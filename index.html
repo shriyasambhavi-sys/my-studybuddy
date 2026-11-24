@@ -1,0 +1,3741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#263f35">
+  <title>Study Command | Personal Academic Season</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Botanical & editorial color tokens */
+    :root {
+      --forest: #263f35;
+      --moss: #54725e;
+      --sage: #dce8dc;
+      --sage2: #edf3ec;
+      --cream: #f7f5ed;
+      --paper: #fffefa;
+      --ink: #26342d;
+      --muted: #778078;
+      --line: #e7e7dd;
+      --gold: #d6bd7e;
+      --rose: #ead9d5;
+      --blue: #dce8f0;
+      --lav: #e8e2f0;
+      --shadow: 0 12px 36px rgba(38, 63, 53, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: linear-gradient(135deg, #263f35, #3e5e4c);
+      color: #f8f8f1;
+      padding: 25px 22px 27px;
+    }
+
+    .wrap {
+      max-width: 1150px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      font-weight: 800;
+    }
+
+    .brand span {
+      font-weight: 400;
+      opacity: 0.65;
+    }
+
+    .topline small {
+      opacity: 0.78;
+      font-size: 12px;
+    }
+
+    .hero {
+      margin-top: 26px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 20px;
+    }
+
+    .hero h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      font-size: clamp(32px, 5vw, 50px);
+      margin: 0 0 7px;
+      line-height: 1.08;
+    }
+
+    .hero p {
+      color: #d7e3d9;
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .datebox {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 16px;
+      padding: 12px 15px;
+      min-width: 130px;
+      text-align: right;
+    }
+
+    .datebox strong {
+      display: block;
+      font-size: 22px;
+      margin-top: 2px;
+    }
+
+    .countrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .count {
+      border-radius: 100px;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      font-size: 12px;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+
+    .count:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    main {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 18px 20px 40px;
+      width: 100%;
+    }
+
+    .nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      margin-bottom: 17px;
+      padding-bottom: 5px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .nav button {
+      white-space: nowrap;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      border-radius: 100px;
+      padding: 10px 14px;
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .nav button.active {
+      background: var(--forest);
+      border-color: var(--forest);
+      color: #ffffff;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 17px;
+      box-shadow: var(--shadow);
+      min-width: 0;
+    }
+
+    .s12 { grid-column: span 12; }
+    .s8  { grid-column: span 8; }
+    .s6  { grid-column: span 6; }
+    .s4  { grid-column: span 4; }
+    .s3  { grid-column: span 3; }
+
+    h2 {
+      font-size: 17px;
+      margin: 0 0 12px;
+      font-weight: 700;
+    }
+
+    h3 {
+      font-size: 14px;
+      margin: 0 0 10px;
+      font-weight: 700;
+    }
+
+    .eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .metric {
+      font-size: 30px;
+      font-weight: 750;
+      letter-spacing: -0.04em;
+      margin: 4px 0;
+    }
+
+    .flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .progress {
+      height: 8px;
+      background: #e8ebe4;
+      border-radius: 100px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .progress i {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: var(--moss);
+      border-radius: 100px;
+      transition: width 0.3s ease;
+    }
+
+    .subjectline {
+      display: flex;
+      gap: 9px;
+      align-items: center;
+      margin: 12px 0;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--moss);
+      flex-shrink: 0;
+    }
+
+    .dot.p { background: #6e91af; }
+    .dot.c { background: #b9944e; }
+    .dot.e { background: #9279a8; }
+
+    .btn {
+      border: 0;
+      border-radius: 11px;
+      padding: 10px 13px;
+      background: var(--forest);
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: opacity 0.15s ease, background 0.15s ease;
+    }
+
+    .btn:hover:not(:disabled) {
+      opacity: 0.92;
+    }
+
+    .btn.light {
+      background: var(--sage2);
+      color: var(--forest);
+    }
+
+    .btn.outline {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--ink);
+    }
+
+    .btn.warn {
+      background: #f3e2df;
+      color: #854b42;
+    }
+
+    .btn:disabled {
+      opacity: 0.42;
+      cursor: not-allowed;
+    }
+
+    .task {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .task:last-child {
+      border-bottom: 0;
+    }
+
+    .task input[type="checkbox"] {
+      margin-top: 3px;
+      accent-color: var(--moss);
+      width: 17px;
+      height: 17px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .task.done .taskbody {
+      opacity: 0.55;
+      text-decoration: line-through;
+    }
+
+    .taskbody {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .tag {
+      display: inline-block;
+      border-radius: 7px;
+      padding: 4px 7px;
+      font-size: 10px;
+      font-weight: 600;
+      background: var(--sage2);
+      color: var(--forest);
+      margin-left: 6px;
+    }
+
+    .tag.p { background: var(--blue); color: #2b475c; }
+    .tag.c { background: #f3ecd9; color: #6c5525; }
+    .tag.e { background: var(--lav); color: #4c3b5e; }
+    .tag.t { background: var(--rose); color: #753b33; }
+
+    .dayheading {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 23px;
+      font-weight: 500;
+      margin: 2px 0 0;
+    }
+
+    .taskactions {
+      display: flex;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+
+    .mini {
+      font-size: 11px;
+      border: 0;
+      background: #f0f0e9;
+      color: var(--ink);
+      border-radius: 8px;
+      padding: 6px 9px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .mini:hover {
+      background: var(--sage2);
+    }
+
+    .tabscreen {
+      display: none;
+    }
+
+    .tabscreen.active {
+      display: block;
+    }
+
+    .callout {
+      background: #f4efdf;
+      border-radius: 13px;
+      padding: 12px;
+      color: #6c5932;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .banner {
+      background: var(--sage2);
+      border: 1px solid var(--sage);
+      color: var(--forest);
+      border-radius: 12px;
+      padding: 10px 13px;
+      font-size: 12px;
+      line-height: 1.45;
+      margin-top: 10px;
+    }
+
+    .banner.warn {
+      background: #f8ece9;
+      border-color: var(--rose);
+      color: #7d3f36;
+    }
+
+    .formgrid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 11px;
+    }
+
+    .field {
+      width: 100%;
+      padding: 10px 11px;
+      border: 1px solid var(--line);
+      background: #ffffff;
+      border-radius: 10px;
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 13px;
+    }
+
+    .field:focus {
+      outline: 2px solid rgba(84, 114, 94, 0.25);
+      border-color: var(--moss);
+    }
+
+    .fieldlabel {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .chapteritem {
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+    }
+
+    .chapteritem:last-child {
+      border-bottom: 0;
+    }
+
+    .chapteritem label {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .chapteritem input {
+      accent-color: var(--moss);
+      margin-top: 2px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    /* 4-stage PCM mastery matrix & chapter-wise marks */
+    .pcm-chapter-row {
+      padding: 11px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+    }
+
+    .pcm-chapter-row:last-child {
+      border-bottom: 0;
+    }
+
+    .pcm-stage-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      margin-top: 8px;
+      align-items: center;
+    }
+
+    .pcm-stage-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .pcm-stage-toggle input {
+      accent-color: var(--moss);
+      width: 15px;
+      height: 15px;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    .pcm-marks-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-left: auto;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .pcm-marks-input {
+      width: 64px;
+      padding: 4px 7px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #ffffff;
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .timerwrap {
+      background: linear-gradient(140deg, #e8eee5, #f7f4e8);
+      border-radius: 17px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .timerdisplay {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 57px;
+      letter-spacing: 0.05em;
+      margin: 8px;
+      line-height: 1.05;
+    }
+
+    .timer-ring {
+      width: 210px;
+      height: 210px;
+      margin: 4px auto 12px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: conic-gradient(var(--moss) var(--ring, 0%), #d8e2d5 0);
+      position: relative;
+    }
+
+    .timer-ring::before {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border-radius: 50%;
+      background: #f3f5ec;
+    }
+
+    .timer-ring > div {
+      position: relative;
+      z-index: 1;
+    }
+
+    .timercontrols {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .preset {
+      border: 1px solid #d3ded1;
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--ink);
+      border-radius: 100px;
+      padding: 7px 11px;
+      font-family: inherit;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .preset.active {
+      background: var(--forest);
+      border-color: var(--forest);
+      color: #ffffff;
+    }
+
+    .statgrid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .statbox {
+      background: var(--sage2);
+      border-radius: 12px;
+      padding: 11px;
+      text-align: center;
+    }
+
+    .statbox strong {
+      font-size: 19px;
+      display: block;
+    }
+
+    .statbox span {
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    .testweek {
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      padding: 14px;
+      margin: 10px 0;
+      background: var(--paper);
+    }
+
+    .testweek.locked {
+      opacity: 0.62;
+    }
+
+    .testweek h3 {
+      margin-bottom: 5px;
+    }
+
+    .testq {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .testresult {
+      padding: 10px;
+      border-radius: 10px;
+      background: var(--sage2);
+      margin-top: 9px;
+      font-size: 13px;
+    }
+
+    .historyrow {
+      padding: 11px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .historyrow:last-child {
+      border-bottom: 0;
+    }
+
+    .smalltext {
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    /* CUET live test & Doubt solver styles matching botanical palette */
+    .mcq-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      padding: 9px 11px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      margin: 6px 0;
+      background: #ffffff;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .mcq-option input {
+      margin-top: 2px;
+      accent-color: var(--moss);
+      cursor: pointer;
+    }
+
+    .mcq-option.correct {
+      background: var(--sage2);
+      border-color: var(--moss);
+    }
+
+    .mcq-option.wrong {
+      background: #f8ece9;
+      border-color: #b86b5e;
+    }
+
+    .cuet-pill {
+      display: inline-block;
+      background: var(--sage2);
+      color: var(--forest);
+      border-radius: 8px;
+      padding: 4px 8px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .doubt-bubble {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 13px;
+      margin-top: 10px;
+      background: #ffffff;
+    }
+
+    .doubt-answer {
+      background: var(--sage2);
+      border-radius: 12px;
+      padding: 12px;
+      margin-top: 8px;
+      font-size: 13px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .mistake-card {
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      padding: 14px;
+      margin-top: 10px;
+      background: #ffffff;
+    }
+
+    .mistake-card.mastered {
+      opacity: 0.72;
+      background: var(--sage2);
+    }
+
+    .status-pill {
+      display: inline-block;
+      border-radius: 8px;
+      padding: 4px 8px;
+      font-size: 11px;
+      font-weight: 600;
+      background: #f8ece9;
+      color: #7d3f36;
+    }
+
+    .status-pill.mastered {
+      background: var(--sage);
+      color: var(--forest);
+    }
+
+    .modalback {
+      position: fixed;
+      inset: 0;
+      background: rgba(21, 37, 29, 0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 20;
+    }
+
+    .modalback.open {
+      display: flex;
+    }
+
+    .modal {
+      max-width: 600px;
+      width: 100%;
+      max-height: 85vh;
+      overflow: auto;
+      background: var(--paper);
+      border-radius: 20px;
+      padding: 19px;
+      box-shadow: var(--shadow);
+    }
+
+    .modalclose {
+      float: right;
+      border: 0;
+      background: #eee;
+      color: var(--ink);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .foot {
+      text-align: center;
+      color: var(--muted);
+      font-size: 11px;
+      padding: 25px 12px;
+    }
+
+    .weekbadge {
+      background: var(--lav);
+      color: var(--ink);
+      border-radius: 8px;
+      padding: 5px 8px;
+      font-size: 11px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 780px) {
+      .s8, .s6, .s4, .s3 {
+        grid-column: span 12;
+      }
+      .hero {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .datebox {
+        text-align: left;
+      }
+      .formgrid {
+        grid-template-columns: 1fr;
+      }
+      .timerdisplay {
+        font-size: 48px;
+      }
+      main {
+        padding: 14px;
+      }
+      .card {
+        padding: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="topline">
+        <div class="brand">STUDY COMMAND <span>/ PERSONAL ACADEMIC SEASON</span></div>
+        <small id="headerStatus">fresh · local-first</small>
+      </div>
+      <div class="hero">
+        <div>
+          <div class="eyebrow" style="color: #c9d9cd;">One day at a time. All the way to CUET.</div>
+          <h1 id="heroTitle">Make today count.</h1>
+          <p id="heroSub">Your plan, your progress, your next move.</p>
+        </div>
+        <div class="datebox">
+          <div class="eyebrow" style="color: #d0ded3;">TODAY</div>
+          <strong id="dateDisplay">—</strong>
+          <span id="weekdayDisplay" style="opacity: 0.75; font-size: 12px;"></span>
+        </div>
+      </div>
+      <div class="countrow">
+        <span class="count" id="jeeCount" onclick="focusSetting('jeeDate')" title="Click to set JEE date">JEE countdown</span>
+        <span class="count" id="boardCount" onclick="focusSetting('boardDate')" title="Click to set Boards date">Boards countdown</span>
+        <span class="count" id="cuetCount" onclick="focusSetting('cuetDate')" title="Click to set CUET date">CUET countdown</span>
+        <span class="count" id="seasonCount" onclick="focusSetting('endDate')" title="Click to set Season end">Season end</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <nav class="nav" aria-label="Primary sections">
+      <button class="active" data-screen="home">Overview</button>
+      <button data-screen="planner">Daily plan</button>
+      <button data-screen="syllabus">Syllabus</button>
+      <button data-screen="selfstudy">Self-study</button>
+      <button data-screen="tests">Weekly tests</button>
+      <button data-screen="doubts">Doubt solver</button>
+      <button data-screen="mistakes">Mistake bank</button>
+      <button data-screen="checkin">11:30 PM review</button>
+      <button data-screen="timer">Focus tracker</button>
+      <button data-screen="settings">Settings / Backup</button>
+    </nav>
+
+    <!-- OVERVIEW -->
+    <section class="tabscreen active" id="home">
+      <div class="grid">
+        <div class="card s3">
+          <div class="eyebrow">Roadmap day</div>
+          <div class="metric" id="dayMetric">—</div>
+          <div class="muted" id="phaseMetric">Phase 1</div>
+        </div>
+        <div class="card s3">
+          <div class="eyebrow">Today's completion</div>
+          <div class="metric" id="doneMetric">0/0</div>
+          <div class="progress"><i id="dailyBar"></i></div>
+        </div>
+        <div class="card s3">
+          <div class="eyebrow">Focused today</div>
+          <div class="metric" id="hoursMetric">0.0h</div>
+          <div class="muted">Logged focus time</div>
+        </div>
+        <div class="card s3">
+          <div class="eyebrow">Questions today</div>
+          <div class="metric" id="questionsMetric">0</div>
+          <div class="muted">Practice count</div>
+        </div>
+
+        <div class="card s8">
+          <div class="flex">
+            <h2>Today's mission</h2>
+            <button class="btn light" onclick="goScreen('planner')">Full plan ↗</button>
+          </div>
+          <div id="homeTasks"></div>
+          <div class="callout" style="margin-top: 12px;" id="mentorNote"></div>
+        </div>
+
+        <div class="card s4">
+          <h2>Subject progress</h2>
+          <div id="progressSubjects"></div>
+          <div class="muted">Completion means concepts + NCERT + practice + revision.</div>
+        </div>
+
+        <div class="card s6">
+          <h2>Weekly rhythm</h2>
+          <div class="smalltext">
+            <b>Mon–Sat</b> — learn, practice, NCERT, recall.<br>
+            <b>Sunday / Day 7</b> — weekly test unlocked when you complete at least 70% of the week's tasks; then review errors and record scores.<br>
+            <b>Backlog</b> — carry forward in a controlled way, not an endless pile.
+          </div>
+          <div class="callout" style="margin-top: 12px;">
+            Fresh season initialized on a clean slate through 31 May 2027. Edit dates in Settings anytime.
+          </div>
+        </div>
+
+        <div class="card s6">
+          <h2>Latest check-in</h2>
+          <div id="latestCheck" class="muted">No review saved yet.</div>
+          <button class="btn light" style="margin-top: 10px;" onclick="goScreen('checkin')">Open evening review</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- DAILY PLAN -->
+    <section class="tabscreen" id="planner">
+      <div class="grid">
+        <div class="card s12">
+          <div class="flex">
+            <div>
+              <div class="eyebrow">Automatic daily scheduling</div>
+              <h2 class="dayheading" id="plannerDate">—</h2>
+            </div>
+            <div class="flex">
+              <button class="btn light" onclick="moveDate(-1)">←</button>
+              <button class="btn light" onclick="jumpToday()">Today</button>
+              <button class="btn light" onclick="moveDate(1)">→</button>
+            </div>
+          </div>
+          <div class="flex" style="margin: 8px 0 14px; flex-wrap: wrap;">
+            <span class="muted" id="plannerPhase"></span>
+            <button class="btn outline" onclick="rescheduleBacklog()">Reschedule unfinished →</button>
+          </div>
+          <div id="plannerList"></div>
+          <div style="margin-top: 14px;" class="formgrid">
+            <div>
+              <label class="fieldlabel" for="addTaskText">Add your own task</label>
+              <input class="field" id="addTaskText" placeholder="e.g. Revise photoelectric graphs">
+            </div>
+            <div>
+              <label class="fieldlabel" for="addTaskSubject">Subject</label>
+              <select class="field" id="addTaskSubject">
+                <option>Maths</option>
+                <option>Physics</option>
+                <option>Chemistry</option>
+                <option>English</option>
+                <option>GAT</option>
+                <option>Revision</option>
+                <option>Test</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn" style="margin-top: 9px;" onclick="addManualTask()">Add to this day</button>
+          <div id="plannerNotice"></div>
+        </div>
+
+        <div class="card s12">
+          <h2>Backlog inbox</h2>
+          <p class="muted">Unfinished tasks are visible here. Rescheduling moves them to the next available day and keeps their original label.</p>
+          <div id="backlogList"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SYLLABUS -->
+    <section class="tabscreen" id="syllabus">
+      <div class="grid">
+        <div class="card s12">
+          <h2>Class 12 &amp; CUET syllabus mastery</h2>
+          <div class="callout">
+            Tick a chapter only after you have done concept learning, NCERT reading/examples, practice, and a quick revision. English and GAT modules are also included for post-board CUET preparation.
+          </div>
+          <div class="grid" style="margin-top: 13px;">
+            <div class="card s4">
+              <h3>Mathematics</h3>
+              <div id="mathList"></div>
+            </div>
+            <div class="card s4">
+              <h3>Physics</h3>
+              <div id="physList"></div>
+            </div>
+            <div class="card s4">
+              <h3>Chemistry</h3>
+              <div id="chemList"></div>
+            </div>
+            <div class="card s6">
+              <h3>English (CUET)</h3>
+              <div id="engList"></div>
+            </div>
+            <div class="card s6">
+              <h3>GAT (CUET)</h3>
+              <div id="gatList"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PCM 4-Stage Mastery & Chapter-Wise Marks Checklist -->
+        <div class="card s12">
+          <div class="flex" style="flex-wrap: wrap;">
+            <div>
+              <div class="eyebrow">PCM chapter tracker · NCERT · PYQs · chapter marks</div>
+              <h2 style="margin: 2px 0;">PCM chapter-wise checklist &amp; marks</h2>
+              <p class="muted" style="margin: 0;">Track every PCM chapter across <b>Read chapter</b>, <b>NCERT Qs</b>, <b>PYQs</b>, and <b>Chapter test</b>, and log marks scored chapter-wise.</p>
+            </div>
+            <span class="cuet-pill" id="pcmMarksSummary">Total PCM Marks: 0</span>
+          </div>
+          <div id="pcmChecklistNotice"></div>
+          <div class="grid" style="margin-top: 13px;">
+            <div class="card s4">
+              <h3>Mathematics · Stages &amp; Marks</h3>
+              <div id="pcmMathChecklist"></div>
+            </div>
+            <div class="card s4">
+              <h3>Physics · Stages &amp; Marks</h3>
+              <div id="pcmPhysicsChecklist"></div>
+            </div>
+            <div class="card s4">
+              <h3>Chemistry · Stages &amp; Marks</h3>
+              <div id="pcmChemistryChecklist"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SELF-STUDY STUDIO -->
+    <section class="tabscreen" id="selfstudy">
+      <div class="grid">
+        <div class="card s6">
+          <div class="eyebrow">Active recall &amp; NCERT quick cards</div>
+          <h2>Self-study flashcard deck</h2>
+          <p class="muted">Test yourself without looking first, then flip to check NCERT rules, formulas, and CUET traps.</p>
+          <div class="formgrid" style="margin-bottom: 10px;">
+            <div>
+              <label class="fieldlabel" for="deckSubjectFilter">Deck filter</label>
+              <select class="field" id="deckSubjectFilter" onchange="resetFlashcardDeck()">
+                <option value="All">All subjects (PCM + Eng + GAT)</option>
+                <option value="Maths">Maths</option>
+                <option value="Physics">Physics</option>
+                <option value="Chemistry">Chemistry</option>
+                <option value="English">English</option>
+                <option value="GAT">GAT</option>
+              </select>
+            </div>
+            <div style="display: flex; align-items: flex-end;">
+              <button class="btn light" style="width: 100%;" onclick="nextFlashcard()">Next card →</button>
+            </div>
+          </div>
+          <div class="doubt-bubble" id="flashcardBox"></div>
+        </div>
+
+        <div class="card s6">
+          <div class="eyebrow">Log independent practice</div>
+          <h2>Self-study log &amp; checklist</h2>
+          <p class="muted">Record self-study blocks directly into today's focus hours and practice count.</p>
+          <div class="formgrid">
+            <div>
+              <label class="fieldlabel" for="selfStudySubject">Subject</label>
+              <select class="field" id="selfStudySubject">
+                <option>Maths</option>
+                <option>Physics</option>
+                <option>Chemistry</option>
+                <option>English</option>
+                <option>GAT</option>
+              </select>
+            </div>
+            <div>
+              <label class="fieldlabel" for="selfStudyMinutes">Duration (minutes)</label>
+              <input class="field" type="number" id="selfStudyMinutes" min="5" max="480" step="5" value="45">
+            </div>
+          </div>
+          <div class="formgrid" style="margin-top: 10px;">
+            <div>
+              <label class="fieldlabel" for="selfStudyQuestions">Questions solved</label>
+              <input class="field" type="number" id="selfStudyQuestions" min="0" max="500" value="15">
+            </div>
+            <div>
+              <label class="fieldlabel" for="selfStudyTopic">Topic / NCERT exercise</label>
+              <input class="field" id="selfStudyTopic" placeholder="e.g. Vector cross product NCERT Ex 10.4">
+            </div>
+          </div>
+          <div class="smalltext" style="margin-top: 10px;">
+            <label class="chapteritem" style="border: 0; padding: 3px 0;"><input type="checkbox" id="ssStep1"> <span>Read NCERT theory / examples without skipping</span></label>
+            <label class="chapteritem" style="border: 0; padding: 3px 0;"><input type="checkbox" id="ssStep2"> <span>Solved timed questions under CUET / Board accuracy check</span></label>
+            <label class="chapteritem" style="border: 0; padding: 3px 0;"><input type="checkbox" id="ssStep3"> <span>Wrote down tricky points or mistakes for revision</span></label>
+          </div>
+          <div class="flex" style="margin-top: 10px; flex-wrap: wrap; justify-content: flex-start;">
+            <button class="btn" onclick="logSelfStudySession()">Log self-study block</button>
+            <button class="btn light" onclick="sendSelfStudyDoubt()">Ask in Doubt solver</button>
+          </div>
+          <div id="selfStudyNotice"></div>
+        </div>
+
+        <div class="card s12">
+          <h2>Self-study session log</h2>
+          <div id="selfStudyHistory"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WEEKLY TESTS -->
+    <section class="tabscreen" id="tests">
+      <div class="grid">
+        <div class="card s12">
+          <div class="flex" style="flex-wrap: wrap;">
+            <div>
+              <h2>CUET UG weekly test room</h2>
+              <p class="muted" style="margin: 0;">Unlocks at 70% weekly task completion · CUET format: 50 MCQs/paper · 60 min timed mode · +5 correct / −1 wrong / 0 unattempted (250 max marks per subject).</p>
+            </div>
+            <span class="cuet-pill">CUET UG +5 / −1</span>
+          </div>
+          <div id="testsNotice"></div>
+          <div id="weekTests"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOUBT SOLVER -->
+    <section class="tabscreen" id="doubts">
+      <div class="grid">
+        <div class="card s12">
+          <div class="eyebrow">Instant concept &amp; numerical assistant</div>
+          <h2>Doubt solver</h2>
+          <p class="muted">Ask any Class 12 Maths, Physics, Chemistry, English, or GAT question or CUET concept doubt. Uses Gemini AI when available with an instant step-by-step study engine fallback.</p>
+          <div class="formgrid">
+            <div>
+              <label class="fieldlabel" for="doubtSubject">Subject</label>
+              <select class="field" id="doubtSubject">
+                <option>Maths</option>
+                <option>Physics</option>
+                <option>Chemistry</option>
+                <option>English</option>
+                <option>GAT</option>
+              </select>
+            </div>
+            <div>
+              <label class="fieldlabel" for="doubtChapter">Topic / Chapter (optional)</label>
+              <input class="field" id="doubtChapter" placeholder="e.g. Current Electricity, Electrochemistry, Integrals">
+            </div>
+          </div>
+          <label class="fieldlabel" style="margin-top: 10px;" for="doubtInput">Your question or doubt</label>
+          <textarea class="field" id="doubtInput" rows="3" placeholder="Type or paste a numerical, NCERT statement, assertion-reason doubt, grammar rule, or reasoning question..."></textarea>
+          <div class="flex" style="margin-top: 10px; flex-wrap: wrap; justify-content: flex-start;">
+            <button class="btn" id="solveDoubtBtn" onclick="solveDoubt()">Solve doubt</button>
+            <button class="btn light" onclick="sendDoubtToPlan()">Send to Today's Plan</button>
+            <button class="btn outline" onclick="saveDoubtToErrorLog()">Save to Error Notebook</button>
+          </div>
+          <div id="doubtNotice"></div>
+          <div id="doubtResultArea"></div>
+        </div>
+
+        <div class="card s12">
+          <h2>Saved doubts &amp; error notebook</h2>
+          <div id="doubtHistory"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISTAKE BANK -->
+    <section class="tabscreen" id="mistakes">
+      <div class="grid">
+        <div class="card s12">
+          <div class="flex" style="flex-wrap: wrap;">
+            <div>
+              <div class="eyebrow">CUET wrong &amp; skipped question archive</div>
+              <h2 style="margin: 2px 0;">Mistake bank</h2>
+              <p class="muted" style="margin: 0;">Every question you answer incorrectly or leave unattempted in a CUET weekly test is automatically saved here for later revision.</p>
+            </div>
+            <div class="statgrid" style="min-width: 260px;">
+              <div class="statbox"><strong id="mistakeTotalCount">0</strong><span>total</span></div>
+              <div class="statbox"><strong id="mistakePendingCount">0</strong><span>needs revision</span></div>
+              <div class="statbox"><strong id="mistakeMasteredCount">0</strong><span>mastered</span></div>
+            </div>
+          </div>
+
+          <div class="flex" style="margin-top: 14px; flex-wrap: wrap; gap: 8px;">
+            <div class="timercontrols" style="justify-content: flex-start;" id="mistakeFilterBar">
+              <button class="preset active" data-mfilter="All">All</button>
+              <button class="preset" data-mfilter="Maths">Maths</button>
+              <button class="preset" data-mfilter="Physics">Physics</button>
+              <button class="preset" data-mfilter="Chemistry">Chemistry</button>
+              <button class="preset" data-mfilter="English">English</button>
+              <button class="preset" data-mfilter="GAT">GAT</button>
+            </div>
+            <button class="btn light" onclick="clearMasteredMistakes()">Clear mastered</button>
+          </div>
+          <div id="mistakeNotice"></div>
+          <div id="mistakeList"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11:30 PM REVIEW -->
+    <section class="tabscreen" id="checkin">
+      <div class="grid">
+        <div class="card s12">
+          <div class="eyebrow">Nightly reset · 11:30 PM IST</div>
+          <h2>Honest progress report</h2>
+          <p class="muted">No guilt. Accurate data lets tomorrow's plan be realistic.</p>
+          <form id="checkForm">
+            <div class="formgrid">
+              <div>
+                <label class="fieldlabel" for="checkDay">Roadmap day</label>
+                <input class="field" type="number" id="checkDay" min="1" required>
+              </div>
+              <div>
+                <label class="fieldlabel" for="checkHours">Focused hours today</label>
+                <input class="field" type="number" id="checkHours" min="0" max="18" step="0.25" value="0">
+              </div>
+              <div>
+                <label class="fieldlabel" for="checkQuestions">Questions solved</label>
+                <input class="field" type="number" id="checkQuestions" min="0" value="0">
+              </div>
+              <div>
+                <label class="fieldlabel" for="checkScore">Weekly score (if tested)</label>
+                <input class="field" id="checkScore" placeholder="Maths __ / Physics __ / Chemistry __">
+              </div>
+              <div>
+                <label class="fieldlabel" for="checkMath">Maths completed / pending</label>
+                <textarea class="field" rows="2" id="checkMath"></textarea>
+              </div>
+              <div>
+                <label class="fieldlabel" for="checkPhysics">Physics completed / pending</label>
+                <textarea class="field" rows="2" id="checkPhysics"></textarea>
+              </div>
+              <div>
+                <label class="fieldlabel" for="checkChem">Chemistry completed / pending</label>
+                <textarea class="field" rows="2" id="checkChem"></textarea>
+              </div>
+              <div>
+                <label class="fieldlabel" for="checkOther">English / GAT (CUET)</label>
+                <textarea class="field" rows="2" id="checkOther"></textarea>
+              </div>
+              <div>
+                <label class="fieldlabel" for="checkStruggle">What got difficult or distracted you?</label>
+                <textarea class="field" rows="3" id="checkStruggle"></textarea>
+              </div>
+              <div>
+                <label class="fieldlabel" for="checkPriority">Tomorrow's priority</label>
+                <textarea class="field" rows="3" id="checkPriority"></textarea>
+              </div>
+            </div>
+            <button class="btn" type="submit" style="margin-top: 12px;">Save nightly review</button>
+          </form>
+          <div id="savedFeedback"></div>
+        </div>
+
+        <div class="card s12">
+          <h2>Check-in history</h2>
+          <div id="checkHistory"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOCUS TRACKER -->
+    <section class="tabscreen" id="timer">
+      <div class="grid">
+        <div class="card s6">
+          <div class="eyebrow">Focus studio · background &amp; tab-closed safe</div>
+          <h2>A quiet hour for the future you</h2>
+          <div class="timerwrap">
+            <div class="timer-ring" id="timerRing">
+              <div>
+                <div class="timerdisplay" id="clock">25:00</div>
+                <div class="muted" id="timerLabel">Ready to focus</div>
+              </div>
+            </div>
+            <div class="timercontrols">
+              <button class="btn" id="timerToggle">Start</button>
+              <button class="btn light" id="timerReset">Reset</button>
+              <button class="btn light" id="timerSkip">Finish session</button>
+            </div>
+            <div class="timercontrols" style="margin-top: 12px;">
+              <button class="preset active" data-min="25">25 focus</button>
+              <button class="preset" data-min="50">50 focus</button>
+              <button class="preset" data-min="15">15 break</button>
+              <button class="preset" data-min="5">5 break</button>
+            </div>
+            <div class="timercontrols" style="margin-top: 10px;">
+              <label class="muted" for="customMinutes">Custom min:</label>
+              <input class="field" type="number" id="customMinutes" min="1" max="300" value="25" style="width: 82px; padding: 6px 8px; text-align: center;">
+              <button class="btn light" id="setCustomTimerBtn" style="padding: 7px 11px;">Apply</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card s6">
+          <h2>Today's focus statistics</h2>
+          <div class="statgrid">
+            <div class="statbox"><strong id="sessionCount">0</strong><span>sessions</span></div>
+            <div class="statbox"><strong id="timerHours">0.0</strong><span>hours</span></div>
+            <div class="statbox"><strong id="timerStreak">0</strong><span>focus streak</span></div>
+          </div>
+          <h3 style="margin-top: 15px;">Focus log</h3>
+          <div id="focusLog"></div>
+          <p class="muted">Uses wall-clock timestamps in local storage so sessions keep counting across tab switches or browser restarts until paused or finished.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SETTINGS / BACKUP -->
+    <section class="tabscreen" id="settings">
+      <div class="grid">
+        <div class="card s6">
+          <h2>Exam dates</h2>
+          <label class="fieldlabel" for="jeeDate">JEE Main Session 1</label>
+          <input class="field" type="date" id="jeeDate">
+          <label class="fieldlabel" style="margin-top: 10px;" for="boardDate">Boards / first major exam</label>
+          <input class="field" type="date" id="boardDate">
+          <label class="fieldlabel" style="margin-top: 10px;" for="cuetDate">CUET UG</label>
+          <input class="field" type="date" id="cuetDate">
+          <button class="btn" style="margin-top: 12px;" onclick="saveExamDates()">Save exam dates</button>
+          <div id="examSavedNote"></div>
+        </div>
+
+        <div class="card s6">
+          <h2>Study season</h2>
+          <label class="fieldlabel" for="startDate">Roadmap start date</label>
+          <input class="field" type="date" id="startDate">
+          <label class="fieldlabel" style="margin-top: 10px;" for="endDate">Season ends</label>
+          <input class="field" type="date" id="endDate">
+          <label class="fieldlabel" style="margin-top: 10px;" for="phase2Date">Phase 2 begins</label>
+          <input class="field" type="date" id="phase2Date">
+          <button class="btn" style="margin-top: 12px;" onclick="saveSeason()">Save dates and regenerate plan</button>
+          <p class="muted">Fresh default schedule runs from Day 1 today through 31 May 2027, shifting to CUET PCM + English in March and adding GAT in April.</p>
+          <div id="seasonSavedNote"></div>
+        </div>
+
+        <div class="card s12">
+          <h2>Backup and reset</h2>
+          <p class="muted">All data is stored locally under a fresh namespace on this browser/device. Download backups periodically if you switch devices or clear browser data.</p>
+          <div class="flex" style="flex-wrap: wrap;">
+            <button class="btn" onclick="exportBackup()">Download backup</button>
+            <label class="btn light" style="cursor: pointer;">
+              Import backup
+              <input type="file" accept=".json,application/json" style="display: none;" onchange="importBackup(event)">
+            </label>
+            <button class="btn warn" onclick="toggleResetConfirm(true)">Reset all app data</button>
+          </div>
+          <div id="resetConfirmBox" class="callout hidden" style="margin-top: 12px;">
+            <b>Confirm clean reset?</b> This clears all data for this fresh workspace in this browser. Download a backup first if you want a copy.
+            <div style="margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="btn warn" onclick="resetAll()">Yes, clear everything</button>
+              <button class="btn light" onclick="toggleResetConfirm(false)">Cancel</button>
+            </div>
+          </div>
+          <div id="backupNotice"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="foot">Study Command · Fresh Workspace · Progress is stored locally in this browser</div>
+  </main>
+
+  <div class="modalback" id="testModal" role="dialog" aria-modal="true">
+    <div class="modal">
+      <button class="modalclose" onclick="closeTest()" aria-label="Close modal">×</button>
+      <div id="testContent"></div>
+    </div>
+  </div>
+
+  <script>
+    // Fresh storage namespace; purge any legacy v2 keys on startup so old edits never bleed in.
+    const STORE = "study_command_fresh_v1";
+    const LEGACY_KEYS = ["study_command_v2", "study_command_timer_v1"];
+
+    (function purgeLegacyStorage() {
+      try {
+        LEGACY_KEYS.forEach((key) => localStorage.removeItem(key));
+      } catch (err) {
+        // Ignore storage access errors in restricted modes
+      }
+    })();
+
+    const defaultChapters = {
+      Maths: [
+        "Vector Algebra",
+        "3D Geometry",
+        "Matrices",
+        "Determinants",
+        "Continuity & Differentiability",
+        "Applications of Derivatives",
+        "Integrals",
+        "Applications of Integrals",
+        "Differential Equations",
+        "Probability",
+        "Relations & Functions",
+        "Inverse Trigonometric Functions",
+        "Linear Programming"
+      ],
+      Physics: [
+        "Current Electricity",
+        "Electrostatic Potential & Capacitance",
+        "Electric Charges & Fields",
+        "Moving Charges & Magnetism",
+        "Electromagnetic Induction",
+        "Alternating Current",
+        "Dual Nature of Radiation & Matter",
+        "Atoms",
+        "Nuclei",
+        "Semiconductor Electronics",
+        "Ray Optics",
+        "Wave Optics",
+        "EM Waves",
+        "Magnetism & Matter"
+      ],
+      Chemistry: [
+        "Solutions",
+        "Electrochemistry",
+        "Chemical Kinetics",
+        "Haloalkanes & Haloarenes",
+        "Alcohols, Phenols & Ethers",
+        "Aldehydes, Ketones & Carboxylic Acids",
+        "Amines",
+        "Biomolecules",
+        "d- & f-Block Elements",
+        "Coordination Compounds"
+      ],
+      English: [
+        "Reading comprehension",
+        "Vocabulary",
+        "Grammar",
+        "Verbal ability",
+        "Practice sets"
+      ],
+      GAT: [
+        "General knowledge",
+        "Current affairs",
+        "Quantitative aptitude",
+        "Logical reasoning",
+        "General science"
+      ]
+    };
+
+    const durations = {
+      Maths: [5, 7, 4, 5, 7, 7, 10, 4, 5, 7, 4, 3, 2],
+      Physics: [8, 8, 8, 6, 7, 6, 5, 5, 5, 7, 10, 7, 4, 5],
+      Chemistry: [8, 9, 8, 9, 10, 12, 8, 9, 8, 9]
+    };
+
+    const selfStudyCards = [
+      {
+        subject: "Maths",
+        topic: "Vector Algebra & 3D Geometry · CUET Trend",
+        prompt: "CUET question pattern: If a, b, c are unit vectors with a + b + c = 0, what is the numerical value of (a · b + b · c + c · a)?",
+        answer: "Square both sides of |a + b + c|² = 0: |a|² + |b|² + |c|² + 2(a · b + b · c + c · a) = 0 ⇒ 1 + 1 + 1 + 2(sum) = 0 ⇒ −3/2."
+      },
+      {
+        subject: "Maths",
+        topic: "3D Geometry · CUET Trend",
+        prompt: "CUET question pattern: What is the distance of the point P(x₁, y₁, z₁) from the y-axis in 3D space?",
+        answer: "Distance from the y-axis is √(x₁² + z₁²) (not y₁). CUET frequently tests axis vs. coordinate plane distances."
+      },
+      {
+        subject: "Maths",
+        topic: "Matrices & Determinants · CUET Trend",
+        prompt: "CUET question pattern: If A is a 3×3 skew-symmetric matrix, what is det(A)?",
+        answer: "For any skew-symmetric matrix of odd order n (here n = 3), det(A) = 0."
+      },
+      {
+        subject: "Maths",
+        topic: "Integrals & Differential Equations · CUET Trend",
+        prompt: "CUET question pattern: Evaluate ∫₀^(π/2) [sin x / (sin x + cos x)] dx using King's property.",
+        answer: "By ∫₀ᵃ f(x) dx = ∫₀ᵃ f(a − x) dx, 2I = ∫₀^(π/2) 1 dx = π/2 ⇒ I = π/4."
+      },
+      {
+        subject: "Physics",
+        topic: "Current Electricity · CUET Trend",
+        prompt: "CUET question pattern: If temperature rises in a semiconductor vs. a metallic conductor, how do their resistivities change?",
+        answer: "Semiconductor resistivity decreases exponentially as carrier concentration (n) rises sharply; metal resistivity increases as relaxation time (τ) drops."
+      },
+      {
+        subject: "Physics",
+        topic: "Electrostatics & EMI · CUET Trend",
+        prompt: "CUET question pattern: Two concentric spherical shells have radii R₁ < R₂ with charge q on the inner shell. What is potential difference between them?",
+        answer: "V(R₁) − V(R₂) = (q / 4πε₀)(1/R₁ − 1/R₂). Inside a charged shell potential equals its surface potential."
+      },
+      {
+        subject: "Physics",
+        topic: "Ray & Wave Optics · CUET Trend",
+        prompt: "CUET question pattern: In YDSE, if the whole apparatus is immersed in a liquid of refractive index μ, how does fringe width β change?",
+        answer: "Wavelength in medium becomes λ' = λ/μ, so fringe width becomes β' = β/μ (decreases by a factor of μ)."
+      },
+      {
+        subject: "Physics",
+        topic: "Dual Nature, Atoms & Nuclei · CUET Trend",
+        prompt: "CUET question pattern: If stopping potential for a photosensitive surface is V₀ at frequency ν, what happens to stopping potential when incident intensity doubles at the same ν?",
+        answer: "Stopping potential remains unchanged (V₀) because kinetic energy per photoelectron depends on frequency, not intensity; photocurrent doubles."
+      },
+      {
+        subject: "Chemistry",
+        topic: "Solutions & Electrochemistry · CUET Trend",
+        prompt: "CUET question pattern: Which 0.1 M aqueous solution shows the highest boiling point: glucose, NaCl, BaCl₂, or K₄[Fe(CN)₆] (assuming complete dissociation)?",
+        answer: "K₄[Fe(CN)₆] gives 5 ions (i = 5), producing the largest ΔTb = i·Kb·m (assuming ideal complete dissociation)."
+      },
+      {
+        subject: "Chemistry",
+        topic: "Chemical Kinetics · CUET Trend",
+        prompt: "CUET question pattern: For a first-order reaction, how does rate constant k change if initial concentration is tripled at constant temperature?",
+        answer: "Rate constant k is independent of concentration at constant temperature (only temperature or a catalyst changes k); initial rate triples."
+      },
+      {
+        subject: "Chemistry",
+        topic: "Haloalkanes, Alcohols & Aldehydes · CUET Trend",
+        prompt: "CUET question pattern: Which reagent distinguishes aldehydes from ketones via a silver mirror test, and what happens in Rosenmund reduction?",
+        answer: "Tollen's reagent ([Ag(NH₃)₂]⁺) gives a silver mirror with aldehydes (not ketones). Rosenmund reduction converts acyl chlorides (RCOCl) to aldehydes using H₂ over Pd–BaSO₄."
+      },
+      {
+        subject: "Chemistry",
+        topic: "Coordination & d/f-Block · CUET Trend",
+        prompt: "CUET question pattern: Why is Cu⁺ diamagnetic and colourless in aqueous solution whereas Cu²⁺ is paramagnetic and blue?",
+        answer: "Cu⁺ has a 3d¹⁰ configuration (no unpaired electrons), whereas Cu²⁺ has 3d⁹ (one unpaired electron) and exhibits d–d transitions."
+      },
+      {
+        subject: "English",
+        topic: "Synonyms · CUET Vocabulary",
+        prompt: "Synonym of EPHEMERAL (CUET vocabulary):",
+        answer: "Short-lived, transient, fleeting. (Opposite: permanent, perpetual, enduring.)"
+      },
+      {
+        subject: "English",
+        topic: "Synonyms · CUET Vocabulary",
+        prompt: "Synonym of METICULOUS and CANDID (CUET vocabulary):",
+        answer: "Meticulous = painstaking, thorough, scrupulous. Candid = frank, forthright, outspoken."
+      },
+      {
+        subject: "English",
+        topic: "Synonyms · CUET Vocabulary",
+        prompt: "Synonym of PRAGMATIC and LOQUACIOUS (CUET vocabulary):",
+        answer: "Pragmatic = practical, realistic. Loquacious = talkative, garrulous."
+      },
+      {
+        subject: "English",
+        topic: "Antonyms · CUET Vocabulary",
+        prompt: "Antonym of BENEVOLENT and AMBIGUOUS (CUET vocabulary):",
+        answer: "Benevolent ↔ Malevolent / cruel. Ambiguous ↔ Clear, explicit, unambiguous."
+      },
+      {
+        subject: "English",
+        topic: "Antonyms · CUET Vocabulary",
+        prompt: "Antonym of FRUGAL andOBSTINATE (CUET vocabulary):",
+        answer: "Frugal ↔ Extravagant / prodigal. Obstinate ↔ Compliant, amenable, pliable."
+      },
+      {
+        subject: "English",
+        topic: "Word Meanings · CUET One-Word / Idioms",
+        prompt: "Word meaning: One who can use both hands equally well, and meaning of 'UBIQUITOUS':",
+        answer: "Ambidextrous = skilled with both hands. Ubiquitous = present, appearing, or found everywhere (omnipresent)."
+      },
+      {
+        subject: "English",
+        topic: "Word Meanings · CUET Vocabulary",
+        prompt: "Word meanings of 'LACONIC', 'ALTRUISM', and 'OSTENTATIOUS':",
+        answer: "Laconic = using very few words (concise). Altruism = selfless concern for others' well-being. Ostentatious = showy, meant to impress."
+      },
+      {
+        subject: "GAT",
+        topic: "CUET Section III · Quantitative & Reasoning",
+        prompt: "CUET GAT pattern: A sum doubles in 5 years under simple interest. In how many years will it become 4 times at the same rate?",
+        answer: "Interest equals principal (100%) in 5 years ⇒ rate = 20% p.a. To become 4×, interest needed = 300% ⇒ 300 / 20 = 15 years."
+      }
+    ];
+
+    function todayStr() {
+      return new Date().toLocaleDateString("en-CA");
+    }
+
+    function dateObj(s) {
+      return new Date(s + "T12:00:00");
+    }
+
+    function fmt(s) {
+      return dateObj(s).toLocaleDateString(undefined, {
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+        year: "numeric"
+      });
+    }
+
+    function daysBetween(a, b) {
+      return Math.round((dateObj(b) - dateObj(a)) / 86400000);
+    }
+
+    function makeId() {
+      if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+        return crypto.randomUUID();
+      }
+      return "id-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8);
+    }
+
+    function showNotice(targetId, message, isWarn = false) {
+      const el = document.getElementById(targetId);
+      if (!el) return;
+      el.innerHTML = `<div class="banner ${isWarn ? "warn" : ""}">${escapeHtml(message)}</div>`;
+    }
+
+    function makePlan(start, end) {
+      const dayTasks = {};
+      const add = (d, s, t, minutes = 80, kind = "Study") => {
+        if (!dayTasks[d]) dayTasks[d] = [];
+        dayTasks[d].push({
+          id: makeId(),
+          subject: s,
+          title: t,
+          minutes,
+          kind,
+          done: false,
+          origin: "plan"
+        });
+      };
+
+      const cursor = dateObj(start);
+      const last = dateObj(end);
+      const subjects = ["Maths", "Physics", "Chemistry"];
+      const remaining = {
+        Maths: durations.Maths[0],
+        Physics: durations.Physics[0],
+        Chemistry: durations.Chemistry[0]
+      };
+      const chIndex = { Maths: 0, Physics: 0, Chemistry: 0 };
+      let day = 1;
+
+      while (cursor <= last) {
+        const ds = cursor.toLocaleDateString("en-CA");
+        if (day <= 70) {
+          subjects.forEach((s) => {
+            const ch = defaultChapters[s][chIndex[s]];
+            if (ch) {
+              const totalD = durations[s][chIndex[s]];
+              const curD = totalD - remaining[s] + 1;
+              add(
+                ds,
+                s,
+                `${ch} · concept learning / NCERT / practice (day ${curD} of ${totalD})`,
+                s === "Maths" ? 150 : 125,
+                "Chapter"
+              );
+              remaining[s]--;
+              if (remaining[s] <= 0) {
+                chIndex[s]++;
+                remaining[s] = durations[s][chIndex[s]] || 1;
+              }
+            } else {
+              add(ds, s, `${s} · Class 12 NCERT mastery & mixed practice`, s === "Maths" ? 150 : 125, "Consolidation");
+            }
+          });
+          add(ds, "Revision", "Daily recall: formulas/NCERT lines + error log + 20 mixed questions", day % 7 === 0 ? 50 : 80, "Revision");
+          if (day % 7 === 0) add(ds, "Revision", "Weekly cumulative revision + error log", 30, "Revision");
+        } else if (day <= 94) {
+          const phaseTopics = [
+            "Board sample-paper section practice + NCERT miscellaneous",
+            "Derivations, diagrams and formula recall",
+            "NCERT line-by-line + exemplar mistakes",
+            "Timed subject practice + correction"
+          ];
+          const topic = phaseTopics[(day - 71) % 4];
+          add(ds, "Maths", topic, 150, "Consolidation");
+          add(ds, "Physics", topic, 125, "Consolidation");
+          add(ds, "Chemistry", topic, 125, "Consolidation");
+          add(ds, "Revision", "Daily recall + NCERT line-by-line + error log", 80, "Revision");
+          if (day % 7 === 0) add(ds, "Test", "Weekly board/CUET cumulative test and analysis", 120, "Test");
+        } else if (ds < "2027-03-01") {
+          add(ds, "Maths", "Final NCERT revision / sample-paper sections / weak-topic repair", 150, "Consolidation");
+          add(ds, "Physics", "Formula, derivations, NCERT graphs and sample-paper section", 125, "Consolidation");
+          add(ds, "Chemistry", "NCERT line-by-line, reactions and sample-paper section", 125, "Consolidation");
+          add(ds, "Revision", "Board presentation checklist + mistake notebook", 80, "Revision");
+          if (day % 7 === 0) add(ds, "Test", "Weekly cumulative Board + CUET concept test", 120, "Test");
+        } else if (ds < "2027-04-01") {
+          const cycle = (day - 95) % 7;
+          const mx = [
+            "NCERT Maths line-by-line + 40 CUET MCQs",
+            "Maths speed drill + 40 MCQs",
+            "Maths weak-area revision + 40 MCQs",
+            "Maths mixed mock section + analysis",
+            "Maths formula/definition recall + 30 MCQs",
+            "Maths timed mixed set + error log",
+            "Weekly PCM + English mini-mock + analysis"
+          ];
+          const px = [
+            "Physics NCERT reading + 35 MCQs",
+            "Physics formulas/graphs + 35 MCQs",
+            "Physics NCERT statements + 35 MCQs",
+            "Physics timed set + analysis",
+            "Physics weak chapters + 35 MCQs",
+            "Physics mixed set + error log",
+            "Weekly PCM + English mini-mock + analysis"
+          ];
+          const cx = [
+            "Chemistry NCERT line-by-line + 40 MCQs",
+            "Chemistry reactions/definitions + 40 MCQs",
+            "Chemistry tables/exceptions + 40 MCQs",
+            "Chemistry timed set + analysis",
+            "Chemistry weak chapters + 40 MCQs",
+            "Chemistry mixed set + error log",
+            "Weekly PCM + English mini-mock + analysis"
+          ];
+          const ex = [
+            "English reading comprehension + vocabulary",
+            "English grammar and verbal ability drills",
+            "English timed reading set + review",
+            "English vocabulary/grammar recall",
+            "English practice set + error log",
+            "English weak area practice",
+            "English CUET mini-mock + analysis"
+          ];
+          add(ds, "Maths", mx[cycle], cycle === 6 ? 120 : 150, "CUET");
+          add(ds, "Physics", px[cycle], cycle === 6 ? 90 : 120, "CUET");
+          add(ds, "Chemistry", cx[cycle], cycle === 6 ? 90 : 120, "CUET");
+          add(ds, "English", ex[cycle], cycle === 6 ? 45 : 75, "CUET");
+          add(ds, "Revision", "NCERT recall, error notebook and 30 mixed questions", cycle === 6 ? 30 : 75, "Revision");
+          if (cycle === 6) add(ds, "Test", "CUET PCM + English mini-mock: timed sections + review", 150, "Test");
+        } else {
+          const cycle = (day - 126) % 7;
+          const math = [
+            "Maths NCERT mastery + 50 MCQs",
+            "Maths speed/accuracy set + 50 MCQs",
+            "Maths weak chapter repair + 50 MCQs",
+            "Maths full timed section + analysis",
+            "Maths mixed chapters + 50 MCQs",
+            "Maths formula drill + 50 MCQs",
+            "CUET Maths mock + error analysis"
+          ];
+          const phys = [
+            "Physics NCERT line-by-line + 45 MCQs",
+            "Physics graphs/formulas + 45 MCQs",
+            "Physics statements + 45 MCQs",
+            "Physics timed section + analysis",
+            "Physics mixed chapters + 45 MCQs",
+            "Physics weak topics + 45 MCQs",
+            "CUET Physics mock + error analysis"
+          ];
+          const chem = [
+            "Chemistry NCERT facts + 50 MCQs",
+            "Chemistry reaction/exception recall + 50 MCQs",
+            "Chemistry tables + 50 MCQs",
+            "Chemistry timed section + analysis",
+            "Chemistry mixed chapters + 50 MCQs",
+            "Chemistry weak topics + 50 MCQs",
+            "CUET Chemistry mock + error analysis"
+          ];
+          const eng = [
+            "English reading comprehension + vocabulary",
+            "English grammar and verbal ability drills",
+            "English timed reading set + review",
+            "English vocabulary/grammar recall",
+            "English practice set + error log",
+            "English weak area practice",
+            "English mini-mock + analysis"
+          ];
+          const gat = [
+            "GAT current affairs + GK",
+            "GAT quant aptitude fundamentals + practice",
+            "GAT logical reasoning drills",
+            "GAT general science + static GK",
+            "GAT mixed timed practice",
+            "GAT weak-topic practice",
+            "GAT mini-mock + analysis"
+          ];
+          add(ds, "Maths", math[cycle], cycle === 6 ? 120 : 150, "CUET");
+          add(ds, "Physics", phys[cycle], cycle === 6 ? 90 : 120, "CUET");
+          add(ds, "Chemistry", chem[cycle], cycle === 6 ? 90 : 120, "CUET");
+          add(ds, "English", eng[cycle], cycle === 6 ? 45 : 90, "CUET");
+          add(ds, "GAT", gat[cycle], cycle === 6 ? 45 : 90, "CUET");
+          add(ds, "Revision", "Flash recall + error notebook + review previous mock", 30, "Revision");
+          if (cycle === 6) add(ds, "Test", "Weekly full CUET practice + detailed error analysis", 180, "Test");
+        }
+        cursor.setDate(cursor.getDate() + 1);
+        day++;
+      }
+      return dayTasks;
+    }
+
+    function defaultTimer() {
+      return {
+        chosenMinutes: 25,
+        totalSeconds: 25 * 60,
+        remainingWhenPaused: 25 * 60,
+        isRunning: false,
+        endTime: null
+      };
+    }
+
+    function baseState() {
+      const start = todayStr();
+      const end = "2027-05-31";
+      return {
+        startDate: start,
+        endDate: end,
+        phase2Date: "2027-03-01",
+        jeeDate: "2027-01-20",
+        boardDate: "2027-02-16",
+        cuetDate: "2027-05-15",
+        selectedDate: start,
+        plan: makePlan(start, end),
+        chapters: defaultChapters,
+        chapterDone: {
+          Maths: [],
+          Physics: [],
+          Chemistry: [],
+          English: [],
+          GAT: []
+        },
+        pcmProgress: {},
+        checkins: [],
+        focus: {},
+        testResults: [],
+        backlog: [],
+        doubts: [],
+        mistakes: [],
+        selfStudyLogs: [],
+        timer: defaultTimer()
+      };
+    }
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORE);
+        if (!raw) return baseState();
+        const parsed = JSON.parse(raw);
+        const start = parsed.startDate || todayStr();
+        const end = parsed.endDate || "2027-05-31";
+        return {
+          ...baseState(),
+          ...parsed,
+          startDate: start,
+          endDate: end,
+          phase2Date: parsed.phase2Date || "2027-03-01",
+          jeeDate: parsed.jeeDate || "2027-01-20",
+          boardDate: parsed.boardDate || "2027-02-16",
+          cuetDate: parsed.cuetDate || "2027-05-15",
+          selectedDate: parsed.selectedDate || todayStr(),
+          chapters: defaultChapters,
+          chapterDone: {
+            Maths: [],
+            Physics: [],
+            Chemistry: [],
+            English: [],
+            GAT: [],
+            ...(parsed.chapterDone || {})
+          },
+          pcmProgress: typeof parsed.pcmProgress === "object" && parsed.pcmProgress !== null ? parsed.pcmProgress : {},
+          doubts: Array.isArray(parsed.doubts) ? parsed.doubts : [],
+          mistakes: Array.isArray(parsed.mistakes) ? parsed.mistakes : [],
+          selfStudyLogs: Array.isArray(parsed.selfStudyLogs) ? parsed.selfStudyLogs : [],
+          plan: parsed.plan || makePlan(start, end),
+          timer: {
+            ...defaultTimer(),
+            ...(parsed.timer || {})
+          }
+        };
+      } catch (err) {
+        return baseState();
+      }
+    }
+
+    let state = loadState();
+    let timerInterval = null;
+    let editingTaskRef = null;
+    let activeMockSession = null;
+    let activeMockCountdown = null;
+    let lastDoubtExchange = null;
+    let selectedMistakeFilter = "All";
+    let flashcardIndex = 0;
+    let flashcardRevealed = false;
+
+    function save() {
+      try {
+        localStorage.setItem(STORE, JSON.stringify(state));
+      } catch (err) {
+        // Handle quota/storage restrictions gracefully
+      }
+      renderAll();
+    }
+
+    function roadmapDay(date) {
+      return Math.max(1, daysBetween(state.startDate, date) + 1);
+    }
+
+    function phaseFor(date) {
+      if (date >= "2027-04-01") return "Phase 3 · Full CUET (PCM + English + GAT)";
+      if (date >= (state.phase2Date || "2027-03-01")) return "Phase 2 · Post-Boards CUET (PCM + English)";
+      if (roadmapDay(date) <= 70) return "Phase 1 · Syllabus sprint";
+      if (roadmapDay(date) <= 94) return "Phase 1 · Boards consolidation";
+      return "CUET consolidation";
+    }
+
+    function taskList(date) {
+      if (!state.plan[date]) state.plan[date] = [];
+      return state.plan[date];
+    }
+
+    function screen(name) {
+      document.querySelectorAll(".tabscreen").forEach((sec) => sec.classList.remove("active"));
+      const target = document.getElementById(name);
+      if (target) target.classList.add("active");
+      document.querySelectorAll(".nav button").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.screen === name);
+      });
+      renderAll();
+    }
+
+    document.querySelectorAll(".nav button").forEach((btn) => {
+      btn.addEventListener("click", () => screen(btn.dataset.screen));
+    });
+
+    function goScreen(name) {
+      screen(name);
+    }
+
+    function focusSetting(fieldId) {
+      screen("settings");
+      setTimeout(() => {
+        const el = document.getElementById(fieldId);
+        if (el) {
+          el.focus();
+          if (typeof el.showPicker === "function") {
+            try { el.showPicker(); } catch (e) {}
+          }
+        }
+      }, 60);
+    }
+
+    function moveDate(deltaDays) {
+      const d = dateObj(state.selectedDate);
+      d.setDate(d.getDate() + deltaDays);
+      state.selectedDate = d.toLocaleDateString("en-CA");
+      save();
+    }
+
+    function jumpToday() {
+      state.selectedDate = todayStr();
+      save();
+    }
+
+    function escapeHtml(value) {
+      return String(value || "").replace(/[&<>"']/g, (ch) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      }[ch]));
+    }
+
+    function taskTagClass(subject) {
+      if (subject === "Physics") return "p";
+      if (subject === "Chemistry") return "c";
+      if (subject === "English" || subject === "GAT") return "e";
+      if (subject === "Test") return "t";
+      return "";
+    }
+
+    function taskHTML(t, date, idx, compact = false) {
+      return `
+        <div class="task ${t.done ? "done" : ""}">
+          <input type="checkbox" ${t.done ? "checked" : ""} onchange="toggleTask('${date}', ${idx}, this.checked)">
+          <div class="taskbody">
+            <b>${escapeHtml(t.title)}</b>
+            <span class="tag ${taskTagClass(t.subject)}">${escapeHtml(t.subject)}</span>
+            <div class="muted">${t.minutes || 60} min · ${escapeHtml(t.kind || "Task")}</div>
+          </div>
+          ${compact ? "" : `
+            <div class="taskactions">
+              <button class="mini" onclick="editTask('${date}', ${idx})">Edit</button>
+              <button class="mini" onclick="removeTask('${date}', ${idx})">×</button>
+            </div>
+          `}
+        </div>
+      `;
+    }
+
+    function toggleTask(date, idx, checked) {
+      const list = taskList(date);
+      if (!list[idx]) return;
+      list[idx].done = checked;
+      if (checked && list[idx].kind === "Chapter") {
+        const sub = list[idx].subject;
+        const title = list[idx].title;
+        const matched = (state.chapters[sub] || []).find((ch) => title.includes(ch));
+        if (matched && !(state.chapterDone[sub] || []).includes(matched)) {
+          state.chapterDone[sub].push(matched);
+        }
+      }
+      save();
+    }
+
+    function removeTask(date, idx) {
+      taskList(date).splice(idx, 1);
+      save();
+    }
+
+    function editTask(date, idx) {
+      const item = taskList(date)[idx];
+      if (!item) return;
+      editingTaskRef = { date, idx };
+      document.getElementById("testContent").innerHTML = `
+        <h3>Edit task</h3>
+        <label class="fieldlabel" for="editTaskInput">Task description</label>
+        <input class="field" id="editTaskInput" value="${escapeHtml(item.title)}">
+        <button class="btn" style="margin-top: 12px;" onclick="confirmEditTask()">Save changes</button>
+      `;
+      document.getElementById("testModal").classList.add("open");
+      setTimeout(() => document.getElementById("editTaskInput")?.focus(), 40);
+    }
+
+    function confirmEditTask() {
+      if (!editingTaskRef) return;
+      const val = document.getElementById("editTaskInput")?.value.trim();
+      if (!val) return;
+      const { date, idx } = editingTaskRef;
+      if (state.plan[date] && state.plan[date][idx]) {
+        state.plan[date][idx].title = val;
+      }
+      editingTaskRef = null;
+      closeTest();
+      save();
+      showNotice("plannerNotice", "Task updated.");
+    }
+
+    function addManualTask() {
+      const input = document.getElementById("addTaskText");
+      const text = input.value.trim();
+      if (!text) {
+        showNotice("plannerNotice", "Enter a task description before adding.", true);
+        return;
+      }
+      const subject = document.getElementById("addTaskSubject").value;
+      taskList(state.selectedDate).push({
+        id: makeId(),
+        subject,
+        title: text,
+        minutes: 60,
+        kind: "Personal task",
+        done: false,
+        origin: "manual"
+      });
+      input.value = "";
+      save();
+      showNotice("plannerNotice", "Added task to this day.");
+    }
+
+    function rescheduleBacklog() {
+      const from = state.selectedDate;
+      const unfinished = taskList(from).filter((t) => !t.done);
+      if (!unfinished.length) {
+        showNotice("plannerNotice", "No unfinished tasks on this day to reschedule.");
+        return;
+      }
+      const cursor = dateObj(from);
+      cursor.setDate(cursor.getDate() + 1);
+      const movedDays = [];
+
+      unfinished.forEach((t) => {
+        let targetDate = "";
+        for (let tries = 0; tries < 14; tries++) {
+          const ds = cursor.toLocaleDateString("en-CA");
+          const existing = state.plan[ds] || [];
+          const usedMin = existing.reduce((sum, item) => sum + (item.minutes || 0), 0);
+          const capMin = ds >= "2027-04-01" ? 600 : 480;
+          if (usedMin + (t.minutes || 60) <= capMin || tries === 13) {
+            targetDate = ds;
+            break;
+          }
+          cursor.setDate(cursor.getDate() + 1);
+        }
+        if (!state.plan[targetDate]) state.plan[targetDate] = [];
+        const carried = {
+          ...t,
+          id: makeId(),
+          title: "[Carried forward] " + t.title,
+          origin: "backlog",
+          done: false
+        };
+        state.plan[targetDate].push(carried);
+        state.backlog.push({
+          from,
+          to: targetDate,
+          task: carried.title,
+          subject: carried.subject
+        });
+        movedDays.push(targetDate);
+        cursor = dateObj(targetDate);
+        cursor.setDate(cursor.getDate() + 1);
+      });
+
+      state.plan[from] = taskList(from).filter((t) => t.done);
+      state.selectedDate = movedDays[0] || from;
+      save();
+      showNotice(
+        "plannerNotice",
+        `${unfinished.length} unfinished task(s) carried forward across ${new Set(movedDays).size} day(s).`
+      );
+    }
+
+    function renderChapterColumn(subject, targetId) {
+      const list = state.chapters[subject] || [];
+      const doneList = state.chapterDone[subject] || [];
+      document.getElementById(targetId).innerHTML = list.map((ch) => {
+        const checked = doneList.includes(ch) ? "checked" : "";
+        return `
+          <div class="chapteritem">
+            <label>
+              <input type="checkbox" ${checked} onchange="toggleChapter('${subject}', ${JSON.stringify(ch)}, this.checked)">
+              <span>${escapeHtml(ch)}</span>
+            </label>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function toggleChapter(subject, chapter, checked) {
+      if (!state.chapterDone[subject]) state.chapterDone[subject] = [];
+      if (checked && !state.chapterDone[subject].includes(chapter)) {
+        state.chapterDone[subject].push(chapter);
+      } else if (!checked) {
+        state.chapterDone[subject] = state.chapterDone[subject].filter((x) => x !== chapter);
+      }
+      if (["Maths", "Physics", "Chemistry"].includes(subject)) {
+        const stageObj = getPcmStageEntry(subject, chapter);
+        stageObj.read = checked;
+        stageObj.ncert = checked;
+        stageObj.pyq = checked;
+        stageObj.test = checked;
+      }
+      save();
+    }
+
+    // 4-stage PCM tracker helpers: Read chapter -> NCERT Qs -> PYQs -> Chapter test + marks
+    function getPcmStageEntry(subject, chapter) {
+      if (!state.pcmProgress[subject]) state.pcmProgress[subject] = {};
+      if (!state.pcmProgress[subject][chapter]) {
+        const alreadyDone = (state.chapterDone[subject] || []).includes(chapter);
+        state.pcmProgress[subject][chapter] = {
+          read: alreadyDone,
+          ncert: alreadyDone,
+          pyq: alreadyDone,
+          test: alreadyDone,
+          marks: ""
+        };
+      }
+      return state.pcmProgress[subject][chapter];
+    }
+
+    function togglePcmStage(subject, chapter, stageKey, checked) {
+      const entry = getPcmStageEntry(subject, chapter);
+      entry[stageKey] = checked;
+
+      if (!state.chapterDone[subject]) state.chapterDone[subject] = [];
+      const allStagesDone = entry.read && entry.ncert && entry.pyq && entry.test;
+      if (allStagesDone && !state.chapterDone[subject].includes(chapter)) {
+        state.chapterDone[subject].push(chapter);
+      } else if (!allStagesDone) {
+        state.chapterDone[subject] = state.chapterDone[subject].filter((x) => x !== chapter);
+      }
+      save();
+    }
+
+    function renderSubjectProgress() {
+      return ["Maths", "Physics", "Chemistry"].map((s) => {
+        const total = (state.chapters[s] || []).length;
+        const done = (state.chapterDone[s] || []).length;
+        const pct = total ? Math.round((done / total) * 100) : 0;
+        const dotClass = s === "Physics" ? "p" : s === "Chemistry" ? "c" : "";
+        return `
+          <div class="subjectline">
+            <span class="dot ${dotClass}"></span>
+            <div style="flex: 1;">
+              <div class="flex">
+                <b>${escapeHtml(s)}</b>
+                <span class="muted">${done}/${total} · ${pct}%</span>
+              </div>
+              <div class="progress"><i style="width: ${pct}%;"></i></div>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function updatePcmMarks(subject, chapter, rawVal) {
+      const entry = getPcmStageEntry(subject, chapter);
+      const trimmed = String(rawVal ?? "").trim();
+      if (trimmed === "") {
+        entry.marks = "";
+      } else {
+        const num = Number(trimmed);
+        entry.marks = Number.isNaN(num) ? trimmed : Math.max(0, num);
+      }
+      try {
+        localStorage.setItem(STORE, JSON.stringify(state));
+      } catch (err) {}
+      updatePcmMarksSummary();
+    }
+
+    function updatePcmMarksSummary() {
+      const summaryEl = document.getElementById("pcmMarksSummary");
+      if (!summaryEl) return;
+      let totalMarks = 0;
+      let loggedCount = 0;
+      ["Maths", "Physics", "Chemistry"].forEach((sub) => {
+        (state.chapters[sub] || []).forEach((ch) => {
+          const m = state.pcmProgress?.[sub]?.[ch]?.marks;
+          if (m !== "" && m !== undefined && !Number.isNaN(Number(m))) {
+            totalMarks += Number(m);
+            loggedCount++;
+          }
+        });
+      });
+      summaryEl.textContent = `PCM Marks Logged: ${totalMarks} (${loggedCount} chapters)`;
+    }
+
+    function renderPcmChecklistColumn(subject, targetId) {
+      const el = document.getElementById(targetId);
+      if (!el) return;
+      const chapters = state.chapters[subject] || [];
+      el.innerHTML = chapters.map((ch, idx) => {
+        const entry = getPcmStageEntry(subject, ch);
+        const qCh = JSON.stringify(ch);
+        const marksVal = entry.marks === undefined || entry.marks === null ? "" : entry.marks;
+        return `
+          <div class="pcm-chapter-row">
+            <div class="flex">
+              <b>${idx + 1}. ${escapeHtml(ch)}</b>
+              <span class="muted">${[entry.read, entry.ncert, entry.pyq, entry.test].filter(Boolean).length}/4 stages</span>
+            </div>
+            <div class="pcm-stage-grid">
+              <label class="pcm-stage-toggle">
+                <input type="checkbox" ${entry.read ? "checked" : ""} onchange="togglePcmStage('${subject}', ${qCh}, 'read', this.checked)">
+                <span>Read chapter</span>
+              </label>
+              <label class="pcm-stage-toggle">
+                <input type="checkbox" ${entry.ncert ? "checked" : ""} onchange="togglePcmStage('${subject}', ${qCh}, 'ncert', this.checked)">
+                <span>NCERT Qs</span>
+              </label>
+              <label class="pcm-stage-toggle">
+                <input type="checkbox" ${entry.pyq ? "checked" : ""} onchange="togglePcmStage('${subject}', ${qCh}, 'pyq', this.checked)">
+                <span>PYQs</span>
+              </label>
+              <label class="pcm-stage-toggle">
+                <input type="checkbox" ${entry.test ? "checked" : ""} onchange="togglePcmStage('${subject}', ${qCh}, 'test', this.checked)">
+                <span>Chapter test</span>
+              </label>
+              <label class="pcm-marks-box">
+                <span>Marks:</span>
+                <input class="pcm-marks-input" type="number" min="0" max="500" step="0.5" value="${escapeHtml(marksVal)}" placeholder="—" onchange="updatePcmMarks('${subject}', ${qCh}, this.value)">
+              </label>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderDashboard() {
+      const d = todayStr();
+      const tasks = taskList(d);
+      const total = tasks.length;
+      const done = tasks.filter((t) => t.done).length;
+      document.getElementById("dayMetric").textContent = roadmapDay(d);
+      document.getElementById("phaseMetric").textContent = phaseFor(d);
+      document.getElementById("doneMetric").textContent = `${done}/${total}`;
+      document.getElementById("dailyBar").style.width = total ? `${(100 * done) / total}%` : "0%";
+
+      const focusedMin = (state.focus[d] || []).reduce((acc, item) => acc + (item.minutes || 0), 0);
+      document.getElementById("hoursMetric").textContent = `${(focusedMin / 60).toFixed(1)}h`;
+
+      const todayCheck = state.checkins.find((c) => c.date === d);
+      document.getElementById("questionsMetric").textContent = todayCheck ? todayCheck.questions : 0;
+
+      document.getElementById("homeTasks").innerHTML = tasks
+        .slice(0, 6)
+        .map((t, idx) => taskHTML(t, d, idx, true))
+        .join("") || '<div class="muted">No daily targets generated for this date.</div>';
+
+      document.getElementById("progressSubjects").innerHTML = renderSubjectProgress();
+
+      const pct = total ? Math.round((done / total) * 100) : 0;
+      document.getElementById("mentorNote").textContent = pct >= 80
+        ? "Strong execution. Finish remaining items, then focus on error review rather than adding extra load."
+        : pct >= 40
+          ? "Steady momentum. Complete the highest-priority block next and carry forward only what cannot fit."
+          : "Start with the smallest first task. One focused session builds real momentum.";
+
+      const latest = state.checkins[0];
+      document.getElementById("latestCheck").innerHTML = latest
+        ? `<b>${escapeHtml(fmt(latest.date))} · Day ${escapeHtml(latest.day)}</b>
+           <p class="smalltext" style="margin: 6px 0;">${escapeHtml(latest.hours)} focused hours · ${escapeHtml(latest.questions)} questions</p>
+           <p class="smalltext" style="margin: 4px 0;"><b>Difficulty:</b> ${escapeHtml(latest.struggle || "—")}</p>
+           <p class="smalltext" style="margin: 4px 0;"><b>Next:</b> ${escapeHtml(latest.priority || "—")}</p>`
+        : "No review saved yet.";
+    }
+
+    function renderPlanner() {
+      const d = state.selectedDate;
+      const tasks = taskList(d);
+      const scheduledMin = tasks.reduce((sum, t) => sum + (t.minutes || 0), 0);
+      document.getElementById("plannerDate").textContent = `${fmt(d)} · Day ${roadmapDay(d)}`;
+      document.getElementById("plannerPhase").textContent = `${phaseFor(d)} · ${(scheduledMin / 60).toFixed(1)} scheduled hours`;
+      document.getElementById("plannerList").innerHTML = tasks
+        .map((t, idx) => taskHTML(t, d, idx, false))
+        .join("") || '<div class="muted">Nothing scheduled for this date. Add a task below.</div>';
+
+      document.getElementById("backlogList").innerHTML = state.backlog
+        .slice(-12)
+        .reverse()
+        .map((item) => `
+          <div class="historyrow">
+            <b>${escapeHtml(item.task)}</b>
+            <div class="muted">${escapeHtml(item.subject)} · moved ${escapeHtml(fmt(item.from))} → ${escapeHtml(fmt(item.to))}</div>
+          </div>
+        `).join("") || '<div class="muted">No backlog carry-forwards recorded.</div>';
+    }
+
+    function renderSyllabus() {
+      renderChapterColumn("Maths", "mathList");
+      renderChapterColumn("Physics", "physList");
+      renderChapterColumn("Chemistry", "chemList");
+      renderChapterColumn("English", "engList");
+      renderChapterColumn("GAT", "gatList");
+      renderPcmChecklistColumn("Maths", "pcmMathChecklist");
+      renderPcmChecklistColumn("Physics", "pcmPhysicsChecklist");
+      renderPcmChecklistColumn("Chemistry", "pcmChemistryChecklist");
+      updatePcmMarksSummary();
+    }
+
+    function weekRange(week) {
+      const start = dateObj(state.startDate);
+      start.setDate(start.getDate() + (week - 1) * 7);
+      const end = new Date(start);
+      end.setDate(end.getDate() + 6);
+      return [start.toLocaleDateString("en-CA"), end.toLocaleDateString("en-CA")];
+    }
+
+    function weekTasks(week) {
+      const [a, b] = weekRange(week);
+      const list = [];
+      const cur = dateObj(a);
+      const stop = dateObj(b);
+      while (cur <= stop) {
+        const ds = cur.toLocaleDateString("en-CA");
+        list.push(...(state.plan[ds] || []));
+        cur.setDate(cur.getDate() + 1);
+      }
+      return list;
+    }
+
+    function weekComplete(week) {
+      const list = weekTasks(week);
+      const done = list.filter((t) => t.done).length;
+      const total = list.length;
+      const percent = total ? Math.round((done / total) * 100) : 0;
+      return { done, total, percent, unlock: total > 0 && done / total >= 0.7 };
+    }
+
+    function chaptersOfWeek(week) {
+      const list = weekTasks(week);
+      return [...new Set(
+        list
+          .filter((t) => !["Revision", "Test"].includes(t.kind))
+          .map((t) => `${t.subject}: ${t.title.split(" · ")[0]}`)
+      )];
+    }
+
+    function renderTests() {
+      const totalDays = Math.max(1, daysBetween(state.startDate, state.endDate) + 1);
+      const totalWeeks = Math.ceil(totalDays / 7);
+      let html = "";
+
+      for (let w = 1; w <= totalWeeks; w++) {
+        const st = weekComplete(w);
+        const [a, b] = weekRange(w);
+        const record = state.testResults.find((r) => r.week === w);
+        const covered = chaptersOfWeek(w).slice(0, 10).join(" · ") || "CUET PCM + English/GAT practice";
+        html += `
+          <div class="testweek ${st.unlock ? "" : "locked"}">
+            <div class="flex">
+              <div>
+                <h3>Week ${w} · ${escapeHtml(fmt(a))} to ${escapeHtml(fmt(b))}</h3>
+                <div class="muted">${st.done}/${st.total} tasks · ${st.percent}% completed · ${st.unlock ? "CUET Test unlocked" : "Complete at least 70% to unlock"}</div>
+              </div>
+              <span class="weekbadge">${record ? `Score ${record.score}/${record.max}` : st.unlock ? "CUET READY" : "LOCKED"}</span>
+            </div>
+            <div class="progress"><i style="width: ${st.percent}%;"></i></div>
+            <div class="smalltext" style="margin: 10px 0;"><b>CUET Coverage:</b> ${escapeHtml(covered)}</div>
+            <div class="smalltext muted" style="margin-bottom: 10px;">Pattern: 50 MCQs per paper · 60 min timer · +5 correct / −1 wrong / 0 unattempted · Max 250 marks/subject</div>
+            <button class="btn ${st.unlock ? "" : "light"}" ${st.unlock ? "" : "disabled"} onclick="openWeekTest(${w})">
+              ${record ? "Launch CUET mock / log score" : "Start CUET weekly test"}
+            </button>
+            ${record ? `<div class="testresult">Last attempt: ${record.score}/${record.max} (${record.accuracy || "—"}% acc) on ${escapeHtml(record.date)} · ${escapeHtml(record.note || "No error note")}</div>` : ""}
+          </div>
+        `;
+      }
+      document.getElementById("weekTests").innerHTML = html;
+    }
+
+    function buildCuetPaperQuestions(subject, chapters) {
+      const primary = chapters[0] || `Class 12 ${subject}`;
+      const secondary = chapters[1] || primary;
+      const bank = {
+        Maths: [
+          {
+            type: "CUET Concept MCQ",
+            q: `In ${primary}, for two non-zero vectors a and b, if |a × b| = √3 (a · b), what is the angle between a and b?`,
+            opts: ["π/6", "π/4", "π/3", "π/2"],
+            ans: 2,
+            exp: "tan θ = |a × b| / (a · b) = √3 ⇒ θ = π/3."
+          },
+          {
+            type: "Assertion–Reason (CUET)",
+            q: `Assertion (A): In ${secondary}, a line parallel to a given vector d through position vector a has equation r = a + λd (λ ∈ R).\nReason (R): Direction ratios of a line are proportional to its direction cosines.`,
+            opts: [
+              "Both A and R are true and R is the correct explanation of A",
+              "Both A and R are true but R is NOT the correct explanation of A",
+              "A is true but R is false",
+              "A is false but R is true"
+            ],
+            ans: 1,
+            exp: "Both statements are mathematically true, though R states direction ratio/cosine relation rather than proving the vector equation of a line."
+          },
+          {
+            type: "CUET Numerical MCQ",
+            q: `Applying ${primary} / NCERT Class 12 rules, if a square matrix A of order 3 satisfies |2A| = k|A|, what is k?`,
+            opts: ["2", "4", "6", "8"],
+            ans: 3,
+            exp: "For order n = 3, |2A| = 2³|A| = 8|A|, so k = 8."
+          },
+          {
+            type: "CUET Standard MCQ",
+            q: `In ${secondary} / Class 12 calculus & probability, if P(A) = 0.4, P(B) = 0.5, and P(A ∩ B) = 0.2, find P(A | B).`,
+            opts: ["0.2", "0.4", "0.5", "0.8"],
+            ans: 1,
+            exp: "P(A | B) = P(A ∩ B) / P(B) = 0.2 / 0.5 = 0.4."
+          }
+        ],
+        Physics: [
+          {
+            type: "NCERT Concept MCQ",
+            q: `In ${primary}, if the length of a metallic wire is doubled while keeping volume constant, its resistance becomes:`,
+            opts: ["2 times", "4 times", "Half", "One-fourth"],
+            ans: 1,
+            exp: "R = ρL/A; doubling L halves area A for constant volume, so R increases by 2² = 4 times."
+          },
+          {
+            type: "Assertion–Reason (CUET)",
+            q: `Assertion (A): In ${secondary}, equipotential surfaces are always perpendicular to electric field lines.\nReason (R): No work is done in moving a test charge along an equipotential surface.`,
+            opts: [
+              "Both A and R are true and R is the correct explanation of A",
+              "Both A and R are true but R is NOT the correct explanation of A",
+              "A is true but R is false",
+              "A is false but R is true"
+            ],
+            ans: 0,
+            exp: "Since dW = E · dl = 0 along an equipotential surface, E must be perpendicular to dl."
+          },
+          {
+            type: "CUET Numerical MCQ",
+            q: `Using ${primary} / Class 12 NCERT relations, a 10 Ω resistor carries 2 A current for 5 minutes. Heat produced is:`,
+            opts: ["6 kJ", "12 kJ", "18 kJ", "24 kJ"],
+            ans: 1,
+            exp: "H = I²Rt = (2)² × 10 × 300 = 12,000 J = 12 kJ."
+          },
+          {
+            type: "NCERT Line MCQ",
+            q: `According to ${secondary} / Class 12 NCERT, which quantity remains conserved in electromagnetic induction when resistance is zero?`,
+            opts: ["Only current", "Mechanical/magnetic energy conversion", "Charge per unit time only", "None of these"],
+            ans: 1,
+            exp: "Lenz's law reflects conservation of energy; extra work against opposing induced EMF appears as electrical energy."
+          }
+        ],
+        Chemistry: [
+          {
+            type: "NCERT Concept MCQ",
+            q: `In ${primary}, adding a non-volatile solute to a solvent at constant temperature causes:`,
+            opts: [
+              "Elevation in freezing point and lowering of vapour pressure",
+              "Depression in freezing point and lowering of vapour pressure",
+              "Elevation in boiling point and increase in vapour pressure",
+              "Decrease in osmotic pressure"
+            ],
+            ans: 1,
+            exp: "Surface blocking lowers vapour pressure, raising boiling point and depressing freezing point (ΔTf = Kf·m)."
+          },
+          {
+            type: "Assertion–Reason (CUET)",
+            q: `Assertion (A): For a first-order reaction in ${secondary}, half-life t₁/₂ is independent of initial concentration.\nReason (R): For first-order kinetics, t₁/₂ = 0.693 / k.`,
+            opts: [
+              "Both A and R are true and R is the correct explanation of A",
+              "Both A and R are true but R is NOT the correct explanation of A",
+              "A is true but R is false",
+              "A is false but R is true"
+            ],
+            ans: 0,
+            exp: "t₁/₂ = ln(2)/k = 0.693/k contains no [A]₀ term."
+          },
+          {
+            type: "Electrochemistry MCQ",
+            q: `In Class 12 Electrochemistry / ${primary}, molar conductivity Λm of a strong electrolyte as concentration c → 0:`,
+            opts: [
+              "Increases linearly with √c (Kohlrausch/Debye-Hückel-Onsager behaviour)",
+              "Drops to zero",
+              "Becomes independent of temperature",
+              "Equals specific conductivity κ"
+            ],
+            ans: 0,
+            exp: "Λm = Λ°m − A√c; as c decreases, inter-ionic attraction weakens and Λm approaches Λ°m."
+          },
+          {
+            type: "NCERT Organic/Inorganic MCQ",
+            q: `In ${secondary} / Class 12 NCERT, SN1 reactivity of alkyl halides increases with:`,
+            opts: [
+              "Stability of carbocation intermediate (3° > 2° > 1°)",
+              "Higher electronegativity of halogen only",
+              "Steric crowding at the α-carbon preventing ionization",
+              "Aprotic polar solvent lowering carbocation stability"
+            ],
+            ans: 0,
+            exp: "SN1 proceeds via carbocation formation; more stable carbocations (like tertiary/benzylic/allylic) react faster."
+          }
+        ],
+        English: [
+          {
+            type: "CUET Reading / Vocabulary",
+            q: `Choose the word closest in meaning to "CANDID" as used in CUET English passages:`,
+            opts: ["Evasive", "Frank and outspoken", "Hostile", "Ambiguous"],
+            ans: 1,
+            exp: "Candid means truthful, straightforward, and frank."
+          },
+          {
+            type: "CUET Grammar",
+            q: `Select the grammatically correct sentence for CUET Section IA:`,
+            opts: [
+              "Neither the students nor the teacher were present.",
+              "Each of the chapters have practice questions.",
+              "Scarcely had he reached the hall when the bell rang.",
+              "One of my friend live in Bhubaneswar."
+            ],
+            ans: 2,
+            exp: "Inversion ('had he reached') paired with 'when' after 'Scarcely' is standard and idiomatic."
+          },
+          {
+            type: "Verbal Ability MCQ",
+            q: `Identify the part with an error: "She prefers tea (A) / than coffee (B) / during winter (C) / evenings (D)."`,
+            opts: ["(A)", "(B)", "(C)", "(D)"],
+            ans: 1,
+            exp: "'Prefer' takes 'to', not 'than' ('prefers tea to coffee')."
+          },
+          {
+            type: "CUET Comprehension",
+            q: `In an argumentative passage on ${primary}, the author's primary purpose in citing empirical evidence is to:`,
+            opts: [
+              "Substantiate a claim objectively",
+              "Introduce an unrelated anecdote",
+              "Contradict the title without reason",
+              "Replace analysis with jargon"
+            ],
+            ans: 0,
+            exp: "Empirical evidence supports and validates analytical claims."
+          }
+        ],
+        GAT: [
+          {
+            type: "CUET GAT Quantitative",
+            q: `If an item is marked 25% above cost price and sold at a 10% discount, what is the net profit percentage?`,
+            opts: ["12.5%", "15%", "10%", "7.5%"],
+            ans: 0,
+            exp: "Let CP = 100 ⇒ MP = 125 ⇒ SP = 125 × 0.9 = 112.5 ⇒ Profit = 12.5%."
+          },
+          {
+            type: "CUET GAT Logical Reasoning",
+            q: `Find the next term in the series: 3, 7, 15, 31, 63, ?`,
+            opts: ["95", "125", "127", "131"],
+            ans: 2,
+            exp: "Each term follows 2n + 1: 63 × 2 + 1 = 127."
+          },
+          {
+            type: "CUET GAT Reasoning",
+            q: `Statements: All graphs are charts. Some charts are tables.\nConclusion I: Some graphs are tables. Conclusion II: Some tables are charts.`,
+            opts: [
+              "Only Conclusion I follows",
+              "Only Conclusion II follows",
+              "Both I and II follow",
+              "Neither I nor II follows"
+            ],
+            ans: 1,
+            exp: "From 'Some charts are tables', it follows that 'Some tables are charts' (II); I is not necessarily true."
+          },
+          {
+            type: "CUET GAT General Science",
+            q: `Which SI unit is correctly paired with its physical quantity in CUET General Test science?`,
+            opts: ["Ohm — Conductance", "Henry — Inductance", "Tesla — Electric flux", "Weber — Resistance"],
+            ans: 1,
+            exp: "The SI unit of inductance is the henry (H)."
+          }
+        ]
+      };
+
+      const baseSet = bank[subject] || bank.GAT;
+      const expanded = [];
+      for (let i = 0; i < 50; i++) {
+        const template = baseSet[i % baseSet.length];
+        const qNum = i + 1;
+        expanded.push({
+          id: qNum,
+          type: template.type,
+          q: `Q${qNum} (${primary}): ${template.q}`,
+          opts: template.opts,
+          ans: template.ans,
+          exp: template.exp
+        });
+      }
+      return expanded;
+    }
+
+    function stopMockTimer() {
+      if (activeMockCountdown) {
+        clearInterval(activeMockCountdown);
+        activeMockCountdown = null;
+      }
+    }
+
+    function formatClock(sec) {
+      const s = Math.max(0, sec);
+      const m = Math.floor(s / 60);
+      const r = s % 60;
+      return `${String(m).padStart(2, "0")}:${String(r).padStart(2, "0")}`;
+    }
+
+    function openWeekTest(week) {
+      if (!weekComplete(week).unlock) {
+        showNotice("testsNotice", "Complete at least 70% of this week's scheduled tasks to unlock the CUET weekly test.", true);
+        return;
+      }
+      const topics = chaptersOfWeek(week);
+      const subjects = [...new Set(
+        weekTasks(week)
+          .map((t) => t.subject)
+          .filter((s) => ["Maths", "Physics", "Chemistry", "English", "GAT"].includes(s))
+      )];
+      const availableSubjects = subjects.length ? subjects : ["Maths", "Physics", "Chemistry"];
+      const initialSubject = availableSubjects[0];
+      const chForSub = topics
+        .filter((item) => item.startsWith(initialSubject + ":"))
+        .map((item) => item.replace(initialSubject + ": ", ""));
+
+      activeMockSession = {
+        week,
+        subject: initialSubject,
+        chaptersBySubject: Object.fromEntries(
+          availableSubjects.map((s) => [
+            s,
+            topics.filter((x) => x.startsWith(s + ":")).map((x) => x.replace(s + ": ", ""))
+          ])
+        ),
+        questions: buildCuetPaperQuestions(initialSubject, chForSub),
+        answers: {},
+        secondsLeft: 60 * 60,
+        submitted: false
+      };
+
+      renderMockModal();
+      document.getElementById("testModal").classList.add("open");
+      stopMockTimer();
+      activeMockCountdown = setInterval(() => {
+        if (!activeMockSession || activeMockSession.submitted) return;
+        activeMockSession.secondsLeft = Math.max(0, activeMockSession.secondsLeft - 1);
+        const timerEl = document.getElementById("cuetMockClock");
+        if (timerEl) timerEl.textContent = formatClock(activeMockSession.secondsLeft);
+        if (activeMockSession.secondsLeft === 0) {
+          submitCuetMock(true);
+        }
+      }, 1000);
+    }
+
+    function switchCuetSubject(newSub) {
+      if (!activeMockSession) return;
+      activeMockSession.subject = newSub;
+      activeMockSession.questions = buildCuetPaperQuestions(
+        newSub,
+        activeMockSession.chaptersBySubject[newSub] || []
+      );
+      activeMockSession.answers = {};
+      activeMockSession.secondsLeft = 60 * 60;
+      activeMockSession.submitted = false;
+      renderMockModal();
+    }
+
+    function selectMockAnswer(qIndex, optIndex) {
+      if (!activeMockSession || activeMockSession.submitted) return;
+      activeMockSession.answers[qIndex] = optIndex;
+    }
+
+    function submitCuetMock(autoSubmitted = false) {
+      if (!activeMockSession) return;
+      activeMockSession.submitted = true;
+      stopMockTimer();
+      captureMockMistakes();
+      renderMockModal(autoSubmitted);
+    }
+
+    function captureMockMistakes() {
+      if (!activeMockSession) return;
+      const m = activeMockSession;
+      const timestamp = new Date().toLocaleString();
+      let addedCount = 0;
+
+      m.questions.forEach((q, idx) => {
+        const picked = m.answers[idx];
+        const isSkipped = picked === undefined || picked === null;
+        const isWrong = !isSkipped && picked !== q.ans;
+        if (!isSkipped && !isWrong) return;
+
+        const chosenText = isSkipped
+          ? "Unattempted (Skipped)"
+          : (q.opts[picked] || `Option ${picked + 1}`);
+        const correctText = q.opts[q.ans] || `Option ${q.ans + 1}`;
+        const existingIdx = state.mistakes.findIndex(
+          (item) => item.subject === m.subject && item.question === q.q
+        );
+
+        const record = {
+          id: existingIdx >= 0 ? state.mistakes[existingIdx].id : makeId(),
+          week: m.week,
+          subject: m.subject,
+          type: q.type || "CUET MCQ",
+          question: q.q,
+          options: Array.isArray(q.opts) ? q.opts : [],
+          selectedAnswer: chosenText,
+          correctAnswer: correctText,
+          explanation: q.exp || "",
+          status: "Needs revision",
+          timestamp,
+          date: todayStr()
+        };
+
+        if (existingIdx >= 0) {
+          state.mistakes.splice(existingIdx, 1);
+        }
+        state.mistakes.unshift(record);
+        addedCount++;
+      });
+
+      if (addedCount > 0) {
+        try {
+          localStorage.setItem(STORE, JSON.stringify(state));
+        } catch (err) {}
+        renderMistakes();
+      }
+    }
+
+    function computeMockScore() {
+      if (!activeMockSession) return { score: 0, max: 250, correct: 0, wrong: 0, skipped: 50, accuracy: 0 };
+      let correct = 0;
+      let wrong = 0;
+      let skipped = 0;
+      activeMockSession.questions.forEach((q, idx) => {
+        const picked = activeMockSession.answers[idx];
+        if (picked === undefined || picked === null) {
+          skipped++;
+        } else if (picked === q.ans) {
+          correct++;
+        } else {
+          wrong++;
+        }
+      });
+      const attempted = correct + wrong;
+      const score = correct * 5 - wrong * 1;
+      const max = activeMockSession.questions.length * 5;
+      const accuracy = attempted ? Math.round((correct / attempted) * 100) : 0;
+      return { score, max, correct, wrong, skipped, accuracy };
+    }
+
+    function renderMockModal(autoSubmitted = false) {
+      const m = activeMockSession;
+      if (!m) return;
+      const [a, b] = weekRange(m.week);
+      const stats = computeMockScore();
+      const subjects = Object.keys(m.chaptersBySubject);
+
+      document.getElementById("testContent").innerHTML = `
+        <div class="flex" style="flex-wrap: wrap; gap: 8px; padding-right: 34px;">
+          <div>
+            <div class="eyebrow">CUET UG Section Runner · +5 / −1 · 50 MCQs</div>
+            <h2 style="margin: 2px 0;">Week ${m.week} CUET Test</h2>
+            <div class="muted">${escapeHtml(fmt(a))} — ${escapeHtml(fmt(b))}</div>
+          </div>
+          <div class="weekbadge" id="cuetMockClock" style="font-size: 14px; padding: 7px 12px;">${formatClock(m.secondsLeft)}</div>
+        </div>
+
+        <div class="timercontrols" style="justify-content: flex-start; margin: 12px 0;">
+          ${subjects.map((sub) => `
+            <button class="preset ${m.subject === sub ? "active" : ""}" onclick="switchCuetSubject('${escapeHtml(sub)}')">
+              ${escapeHtml(sub)} (50 Qs · 250m)
+            </button>
+          `).join("")}
+        </div>
+
+        ${m.submitted ? `
+          <div class="testresult" style="margin-bottom: 12px;">
+            <b>${autoSubmitted ? "Time up — CUET Evaluation:" : "CUET Score Summary:"}</b>
+            Score: <b>${stats.score} / ${stats.max}</b> · Correct: <b>${stats.correct}</b> (+${stats.correct * 5}) · Wrong: <b>${stats.wrong}</b> (−${stats.wrong}) · Unattempted: <b>${stats.skipped}</b> · Accuracy: <b>${stats.accuracy}%</b>
+            ${(stats.wrong + stats.skipped) > 0 ? `<div class="muted" style="margin-top: 4px;">${stats.wrong + stats.skipped} incorrect/skipped question(s) automatically added to the <b>Mistake bank</b> tab.</div>` : ""}
+          </div>
+        ` : ""}
+
+        <div style="max-height: 44vh; overflow-y: auto; padding-right: 4px;">
+          ${m.questions.map((q, idx) => {
+            const picked = m.answers[idx];
+            return `
+              <div class="testq">
+                <div class="eyebrow" style="margin-bottom: 4px;">${escapeHtml(q.type)}</div>
+                <div class="smalltext" style="font-weight: 600; color: var(--ink); white-space: pre-line;">${escapeHtml(q.q)}</div>
+                ${q.opts.map((opt, oIdx) => {
+                  let stateClass = "";
+                  if (m.submitted) {
+                    if (oIdx === q.ans) stateClass = "correct";
+                    else if (picked === oIdx && oIdx !== q.ans) stateClass = "wrong";
+                  }
+                  return `
+                    <label class="mcq-option ${stateClass}">
+                      <input type="radio" name="cuet_q_${idx}" ${picked === oIdx ? "checked" : ""} ${m.submitted ? "disabled" : ""} onchange="selectMockAnswer(${idx}, ${oIdx})">
+                      <span>${escapeHtml(opt)}</span>
+                    </label>
+                  `;
+                }).join("")}
+                ${m.submitted ? `<div class="muted" style="margin-top: 4px;"><b>Solution:</b> ${escapeHtml(q.exp)}</div>` : ""}
+              </div>
+            `;
+          }).join("")}
+        </div>
+
+        <div class="flex" style="margin-top: 12px; flex-wrap: wrap;">
+          ${!m.submitted
+            ? `<button class="btn" onclick="submitCuetMock(false)">Submit &amp; score CUET test</button>`
+            : `<button class="btn light" onclick="switchCuetSubject('${escapeHtml(m.subject)}')">Retry ${escapeHtml(m.subject)} paper</button>`
+          }
+        </div>
+
+        <label class="fieldlabel" style="margin-top: 12px;" for="testNote">Error log / weak CUET topics</label>
+        <textarea class="field" id="testNote" rows="2" placeholder="Record negative-marking slips, assertion-reasoning traps, or NCERT revisions needed..."></textarea>
+        <button class="btn" style="margin-top: 10px;" onclick="saveCuetTestResult()">Save CUET result to history</button>
+      `;
+    }
+
+    function saveCuetTestResult() {
+      if (!activeMockSession) return;
+      const stats = computeMockScore();
+      const note = document.getElementById("testNote")?.value.trim() || "";
+      state.testResults.unshift({
+        week: activeMockSession.week,
+        subject: activeMockSession.subject,
+        date: todayStr(),
+        score: stats.score,
+        max: stats.max,
+        accuracy: stats.accuracy,
+        note: `[${activeMockSession.subject} · +5/−1] ${note}`.trim()
+      });
+      stopMockTimer();
+      const savedWeek = activeMockSession.week;
+      const savedScore = stats.score;
+      const savedMax = stats.max;
+      activeMockSession = null;
+      save();
+      closeTest();
+      showNotice("testsNotice", `Saved Week ${savedWeek} CUET score: ${savedScore}/${savedMax}.`);
+    }
+
+    function closeTest() {
+      stopMockTimer();
+      activeMockSession = null;
+      editingTaskRef = null;
+      document.getElementById("testModal").classList.remove("open");
+    }
+
+    // Doubt solver engine: Gemini API when GEMINI_API is provided, with offline Class 12 & CUET fallback
+    function generateOfflineDoubtSolution(subject, chapter, question) {
+      const qLower = question.toLowerCase();
+      const topic = chapter || `${subject} NCERT Core`;
+
+      if (qLower.includes("ohm") || qLower.includes("current") || qLower.includes("resistance") || qLower.includes("drift")) {
+        return `Subject: ${subject} (${topic})\n\n1. Key Formula: Ohm's law states V = IR (for ohmic conductors at constant temperature), and current density J = σE = n·e·vd.\n2. Step-by-Step Approach:\n   • Identify given quantities (V, I, R, length L, area A, or resistivity ρ).\n   • Use R = ρL/A if geometry changes (for stretching at constant volume, R' = n²R).\n   • Apply Kirchhoff's junction (ΣI = 0) and loop (ΣV = 0) rules for networks.\n3. CUET Trap Watch: Watch unit conversions (cm to m, mA to A) and distinguish terminal voltage (V = ε − Ir) from open-circuit EMF.`;
+      }
+      if (qLower.includes("integr") || qLower.includes("deriv") || qLower.includes("vector") || qLower.includes("3d") || qLower.includes("matrix")) {
+        return `Subject: ${subject} (${topic})\n\n1. Core Rule: Match the problem type to its standard NCERT Class 12 form before substituting limits or values.\n2. Step-by-Step Approach:\n   • Calculus/Algebra: Simplify expressions, check domain/continuity, and apply substitution, by-parts, or determinant/matrix properties.\n   • Vectors & 3D: Write position/direction vectors cleanly; use a · b = |a||b|cosθ for angles/projections and a × b for area/perpendiculars.\n3. CUET Trap Watch: Check sign conventions, limits of integration, and scalar vs. vector outputs (+5 / −1 negative marking).`;
+      }
+      if (qLower.includes("electrochem") || qLower.includes("kinetics") || qLower.includes("solution") || qLower.includes("molar") || qLower.includes("organic") || qLower.includes("sn1") || qLower.includes("sn2")) {
+        return `Subject: ${subject} (${topic})\n\n1. NCERT Concept Anchor: Tie physical/organic chemistry questions directly to NCERT tables, rate laws, Nernst equation (E = E° − (0.059/n)log Q at 298 K), or reaction mechanism intermediates.\n2. Step-by-Step Approach:\n   • Identify reaction order, electrolyte dissociation (van 't Hoff factor i), or functional group reagent.\n   • Track stereochemistry, carbocation stability, or major/minor product rules.\n3. CUET Trap Watch: Read "Assertion–Reason" and "incorrect statement" options carefully—NCERT exceptions are frequent CUET targets.`;
+      }
+      if (subject === "English" || qLower.includes("grammar") || qLower.includes("comprehension") || qLower.includes("vocab")) {
+        return `Subject: English (${topic})\n\n1. Rule & Strategy: For CUET Section IA, eliminate choices that introduce outside facts or shift tense/subject-verb agreement.\n2. Step-by-Step Approach:\n   • Grammar/Syntax: Check subject–verb concord, modifier placement, and fixed prepositions.\n   • Reading/Vocabulary: Infer meaning from context clues first, then test substitution in the sentence.\n3. CUET Trap Watch: Avoid extreme absolute words ("always", "never") unless directly supported by the passage.`;
+      }
+      if (subject === "GAT" || qLower.includes("ratio") || qLower.includes("profit") || qLower.includes("series") || qLower.includes("reasoning")) {
+        return `Subject: GAT (${topic})\n\n1. Method: Break quantitative and logical reasoning prompts into ratios, percentage multipliers, or pattern differences.\n2. Step-by-Step Approach:\n   • Quant: Convert percentage changes into decimal multipliers (e.g., +25% ⇒ ×1.25; −10% ⇒ ×0.90).\n   • Reasoning: Test first/second differences or prime/power patterns on the first three terms before picking an option.\n3. CUET Trap Watch: Skip time-consuming calculation loops early and revisit if time permits.`;
+      }
+
+      return `Subject: ${subject} (${topic})\n\nQuestion: "${question}"\n\n1. Concept Breakdown: Start from the fundamental NCERT Class 12 definition and governing relation for ${topic}.\n2. Step-by-Step Solution Path:\n   • List known values/conditions and state what is asked.\n   • Apply the relevant theorem, law, or rule cleanly.\n   • Verify units, boundary conditions, and answer choices.\n3. CUET Exam Tip: Double-check sign conventions and statement wording before locking your answer (+5 correct / −1 wrong).`;
+    }
+
+    async function solveDoubt() {
+      const subject = document.getElementById("doubtSubject").value;
+      const chapter = document.getElementById("doubtChapter").value.trim();
+      const inputEl = document.getElementById("doubtInput");
+      const question = inputEl.value.trim();
+
+      if (!question) {
+        showNotice("doubtNotice", "Type or paste a question or doubt first.", true);
+        return;
+      }
+
+      const btn = document.getElementById("solveDoubtBtn");
+      btn.disabled = true;
+      btn.textContent = "Solving...";
+      showNotice("doubtNotice", "Working through your doubt...");
+
+      let answerText = "";
+      const apiKey = typeof window.GEMINI_API === "string" ? window.GEMINI_API.trim() : "";
+
+      if (apiKey) {
+        try {
+          const response = await fetch(
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${encodeURIComponent(apiKey)}`,
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                contents: [
+                  {
+                    role: "user",
+                    parts: [
+                      {
+                        text: `Solve this ${subject} doubt${chapter ? ` (${chapter})` : ""} clearly for a Class 12 / CUET student with step-by-step explanation and a short CUET tip:\n\n${question}`
+                      }
+                    ]
+                  }
+                ]
+              })
+            }
+          );
+          const data = await response.json();
+          const candidateText = data?.candidates?.[0]?.content?.parts
+            ?.map((p) => p.text || "")
+            .join("")
+            .trim();
+          if (candidateText) {
+            answerText = candidateText;
+          }
+        } catch (err) {
+          // Fall through to offline solver if network or API call fails
+        }
+      }
+
+      if (!answerText) {
+        answerText = generateOfflineDoubtSolution(subject, chapter, question);
+      }
+
+      lastDoubtExchange = {
+        id: makeId(),
+        subject,
+        chapter,
+        question,
+        answer: answerText,
+        date: todayStr()
+      };
+
+      document.getElementById("doubtResultArea").innerHTML = `
+        <div class="doubt-bubble">
+          <div class="flex" style="flex-wrap: wrap;">
+            <b>${escapeHtml(subject)}${chapter ? ` · ${escapeHtml(chapter)}` : ""}</b>
+            <span class="cuet-pill">Step-by-step answer</span>
+          </div>
+          <p class="smalltext" style="margin: 8px 0 4px;"><b>Question:</b> ${escapeHtml(question)}</p>
+          <div class="doubt-answer">${escapeHtml(answerText)}</div>
+        </div>
+      `;
+
+      btn.disabled = false;
+      btn.textContent = "Solve doubt";
+      showNotice("doubtNotice", "Solution ready. You can add it to Today's Plan or save it to your Error Notebook.");
+    }
+
+    function sendDoubtToPlan() {
+      const subject = document.getElementById("doubtSubject").value;
+      const chapter = document.getElementById("doubtChapter").value.trim();
+      const question = document.getElementById("doubtInput").value.trim() || lastDoubtExchange?.question || "";
+      if (!question) {
+        showNotice("doubtNotice", "Enter a doubt first to send it to Today's Plan.", true);
+        return;
+      }
+      const label = `Doubt review${chapter ? ` (${chapter})` : ""}: ${question.slice(0, 75)}${question.length > 75 ? "…" : ""}`;
+      taskList(todayStr()).push({
+        id: makeId(),
+        subject,
+        title: label,
+        minutes: 30,
+        kind: "Doubt follow-up",
+        done: false,
+        origin: "doubt"
+      });
+      save();
+      showNotice("doubtNotice", "Added doubt follow-up to Today's Plan.");
+    }
+
+    function saveDoubtToErrorLog() {
+      const subject = document.getElementById("doubtSubject").value;
+      const chapter = document.getElementById("doubtChapter").value.trim();
+      const question = document.getElementById("doubtInput").value.trim() || lastDoubtExchange?.question || "";
+      if (!question) {
+        showNotice("doubtNotice", "Enter a doubt first to save it to the Error Notebook.", true);
+        return;
+      }
+      const answer = lastDoubtExchange && lastDoubtExchange.question === question
+        ? lastDoubtExchange.answer
+        : generateOfflineDoubtSolution(subject, chapter, question);
+
+      state.doubts.unshift({
+        id: makeId(),
+        date: todayStr(),
+        subject,
+        chapter,
+        question,
+        answer
+      });
+      save();
+      showNotice("doubtNotice", "Saved to Error Notebook.");
+    }
+
+    function removeSavedDoubt(id) {
+      state.doubts = state.doubts.filter((d) => d.id !== id);
+      save();
+    }
+
+    function toggleMistakeStatus(id) {
+      const target = state.mistakes.find((m) => m.id === id);
+      if (!target) return;
+      target.status = target.status === "Mastered" ? "Needs revision" : "Mastered";
+      save();
+    }
+
+    function deleteMistake(id) {
+      state.mistakes = state.mistakes.filter((m) => m.id !== id);
+      save();
+    }
+
+    function clearMasteredMistakes() {
+      const before = state.mistakes.length;
+      state.mistakes = state.mistakes.filter((m) => m.status !== "Mastered");
+      const removed = before - state.mistakes.length;
+      save();
+      showNotice(
+        "mistakeNotice",
+        removed > 0 ? `Cleared ${removed} mastered question(s) from the Mistake bank.` : "No mastered questions to clear."
+      );
+    }
+
+    function sendMistakeToDoubtSolver(id) {
+      const item = state.mistakes.find((m) => m.id === id);
+      if (!item) return;
+      screen("doubts");
+      document.getElementById("doubtSubject").value = item.subject || "Maths";
+      document.getElementById("doubtChapter").value = `Week ${item.week} Mistake (${item.type})`;
+      document.getElementById("doubtInput").value =
+        `${item.question}\nYour attempt: ${item.selectedAnswer}\nCorrect option: ${item.correctAnswer}`;
+      solveDoubt();
+    }
+
+    function addMistakeToTodayPlan(id) {
+      const item = state.mistakes.find((m) => m.id === id);
+      if (!item) return;
+      const shortQ = item.question.replace(/\s+/g, " ").slice(0, 72);
+      taskList(todayStr()).push({
+        id: makeId(),
+        subject: item.subject || "Revision",
+        title: `Revise CUET W${item.week} mistake: ${shortQ}${item.question.length > 72 ? "…" : ""}`,
+        minutes: 25,
+        kind: "Mistake revision",
+        done: false,
+        origin: "mistake"
+      });
+      save();
+      showNotice("mistakeNotice", "Added mistake revision block to Today's Plan.");
+    }
+
+    document.querySelectorAll("#mistakeFilterBar .preset").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        selectedMistakeFilter = btn.dataset.mfilter || "All";
+        document.querySelectorAll("#mistakeFilterBar .preset").forEach((b) => {
+          b.classList.toggle("active", b === btn);
+        });
+        renderMistakes();
+      });
+    });
+
+    function renderMistakes() {
+      const totalEl = document.getElementById("mistakeTotalCount");
+      const pendingEl = document.getElementById("mistakePendingCount");
+      const masteredEl = document.getElementById("mistakeMasteredCount");
+      const listEl = document.getElementById("mistakeList");
+      if (!totalEl || !pendingEl || !masteredEl || !listEl) return;
+
+      const total = state.mistakes.length;
+      const masteredCount = state.mistakes.filter((m) => m.status === "Mastered").length;
+      const pendingCount = total - masteredCount;
+
+      totalEl.textContent = total;
+      pendingEl.textContent = pendingCount;
+      masteredEl.textContent = masteredCount;
+
+      const filtered = selectedMistakeFilter === "All"
+        ? state.mistakes
+        : state.mistakes.filter((m) => m.subject === selectedMistakeFilter);
+
+      if (!filtered.length) {
+        listEl.innerHTML = `<div class="muted" style="margin-top: 12px;">${
+          selectedMistakeFilter === "All"
+            ? "No mistakes recorded yet. Submit a CUET weekly test and any wrong or skipped questions will appear here automatically."
+            : `No recorded mistakes under ${escapeHtml(selectedMistakeFilter)}.`
+        }</div>`;
+        return;
+      }
+
+      listEl.innerHTML = filtered.map((m) => {
+        const isMastered = m.status === "Mastered";
+        return `
+          <div class="mistake-card ${isMastered ? "mastered" : ""}">
+            <div class="flex" style="flex-wrap: wrap; gap: 8px;">
+              <div>
+                <span class="tag ${taskTagClass(m.subject)}" style="margin-left: 0;">${escapeHtml(m.subject)}</span>
+                <span class="cuet-pill" style="margin-left: 6px;">Week ${escapeHtml(m.week)}</span>
+                <span class="muted" style="margin-left: 6px;">${escapeHtml(m.type)} · ${escapeHtml(m.timestamp || m.date)}</span>
+              </div>
+              <span class="status-pill ${isMastered ? "mastered" : ""}">${escapeHtml(m.status)}</span>
+            </div>
+
+            <div class="smalltext" style="font-weight: 600; color: var(--ink); margin: 10px 0 6px; white-space: pre-line;">${escapeHtml(m.question)}</div>
+
+            ${Array.isArray(m.options) && m.options.length ? `
+              <div class="smalltext" style="margin-bottom: 8px;">
+                ${m.options.map((opt, oIdx) => `<div class="muted" style="padding: 2px 0;">${String.fromCharCode(65 + oIdx)}. ${escapeHtml(opt)}</div>`).join("")}
+              </div>
+            ` : ""}
+
+            <div class="smalltext" style="margin: 6px 0;">
+              <span style="color: #7d3f36;"><b>Your answer:</b> ${escapeHtml(m.selectedAnswer)}</span> ·
+              <span style="color: var(--forest);"><b>Correct answer:</b> ${escapeHtml(m.correctAnswer)}</span>
+            </div>
+
+            ${m.explanation ? `<div class="doubt-answer" style="margin-top: 8px;"><b>Explanation:</b> ${escapeHtml(m.explanation)}</div>` : ""}
+
+            <div class="flex" style="margin-top: 10px; flex-wrap: wrap; justify-content: flex-start; gap: 6px;">
+              <button class="btn light" onclick="toggleMistakeStatus('${escapeHtml(m.id)}')">
+                ${isMastered ? "Mark needs revision" : "Mark mastered"}
+              </button>
+              <button class="btn outline" onclick="sendMistakeToDoubtSolver('${escapeHtml(m.id)}')">Send to Doubt solver</button>
+              <button class="btn outline" onclick="addMistakeToTodayPlan('${escapeHtml(m.id)}')">Add to Today's Plan</button>
+              <button class="mini" onclick="deleteMistake('${escapeHtml(m.id)}')">Delete</button>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderDoubts() {
+      const listEl = document.getElementById("doubtHistory");
+      if (!listEl) return;
+      if (!state.doubts.length) {
+        listEl.innerHTML = '<div class="muted">No saved doubts yet. Solve a question above and save it here for revision.</div>';
+        return;
+      }
+      listEl.innerHTML = state.doubts.map((item) => `
+        <div class="historyrow">
+          <div class="flex">
+            <b>${escapeHtml(item.subject)}${item.chapter ? ` · ${escapeHtml(item.chapter)}` : ""} <span class="muted">(${escapeHtml(item.date)})</span></b>
+            <button class="mini" onclick="removeSavedDoubt('${escapeHtml(item.id)}')">Remove</button>
+          </div>
+          <p class="smalltext" style="margin: 6px 0;"><b>Q:</b> ${escapeHtml(item.question)}</p>
+          <div class="doubt-answer">${escapeHtml(item.answer)}</div>
+        </div>
+      `).join("");
+    }
+
+    document.getElementById("checkForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const entry = {
+        date: todayStr(),
+        day: Number(document.getElementById("checkDay").value || roadmapDay(todayStr())),
+        hours: Number(document.getElementById("checkHours").value || 0),
+        questions: Number(document.getElementById("checkQuestions").value || 0),
+        score: document.getElementById("checkScore").value.trim(),
+        math: document.getElementById("checkMath").value.trim(),
+        physics: document.getElementById("checkPhysics").value.trim(),
+        chem: document.getElementById("checkChem").value.trim(),
+        other: document.getElementById("checkOther").value.trim(),
+        struggle: document.getElementById("checkStruggle").value.trim(),
+        priority: document.getElementById("checkPriority").value.trim()
+      };
+      state.checkins.unshift(entry);
+      save();
+      showNotice("savedFeedback", "Nightly review saved. Start tomorrow with your listed priority.");
+    });
+
+    function renderCheckins() {
+      const latest = state.checkins[0];
+      const dayInput = document.getElementById("checkDay");
+      if (dayInput && document.activeElement !== dayInput) {
+        dayInput.value = latest && latest.date === todayStr() ? latest.day : roadmapDay(todayStr());
+      }
+      document.getElementById("checkHistory").innerHTML = state.checkins.map((x) => `
+        <div class="historyrow">
+          <b>${escapeHtml(fmt(x.date))} · Day ${escapeHtml(x.day)}</b>
+          <div class="muted">${escapeHtml(x.hours)} hours · ${escapeHtml(x.questions)} questions · ${escapeHtml(x.score || "No test score")}</div>
+          <p class="smalltext" style="margin: 6px 0 0;">
+            <b>Struggle:</b> ${escapeHtml(x.struggle || "—")}<br>
+            <b>Tomorrow:</b> ${escapeHtml(x.priority || "—")}
+          </p>
+        </div>
+      `).join("") || '<div class="muted">Saved reviews will show here.</div>';
+    }
+
+    // Wall-clock timer persistence so sessions continue across tab switches and page reloads
+    function getRemainingSeconds() {
+      const t = state.timer;
+      if (t.isRunning && t.endTime) {
+        return Math.max(0, Math.ceil((t.endTime - Date.now()) / 1000));
+      }
+      return Math.max(0, t.remainingWhenPaused);
+    }
+
+    function playChime() {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        [523.25, 659.25, 783.99].forEach((freq, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = "sine";
+          osc.frequency.value = freq;
+          gain.gain.setValueAtTime(0.001, ctx.currentTime + idx * 0.16);
+          gain.gain.exponentialRampToValueAtTime(0.1, ctx.currentTime + idx * 0.16 + 0.04);
+          gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + idx * 0.16 + 0.65);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(ctx.currentTime + idx * 0.16);
+          osc.stop(ctx.currentTime + idx * 0.16 + 0.7);
+        });
+      } catch (err) {
+        // Ignore audio restrictions
+      }
+    }
+
+    function syncTimerControls() {
+      document.querySelectorAll(".preset").forEach((btn) => {
+        btn.classList.toggle("active", Number(btn.dataset.min) === state.timer.chosenMinutes);
+      });
+      const customInp = document.getElementById("customMinutes");
+      if (customInp && document.activeElement !== customInp) {
+        customInp.value = state.timer.chosenMinutes;
+      }
+    }
+
+    function drawTimer() {
+      const rem = getRemainingSeconds();
+      const mm = Math.floor(rem / 60);
+      const ss = rem % 60;
+      const formatted = `${String(mm).padStart(2, "0")}:${String(ss).padStart(2, "0")}`;
+      document.getElementById("clock").textContent = formatted;
+      const total = Math.max(1, state.timer.totalSeconds);
+      const pct = Math.min(100, Math.max(0, 100 * (1 - rem / total)));
+      document.getElementById("timerRing").style.setProperty("--ring", `${pct}%`);
+
+      const toggleBtn = document.getElementById("timerToggle");
+      const labelEl = document.getElementById("timerLabel");
+      const hdrStatus = document.getElementById("headerStatus");
+
+      if (state.timer.isRunning) {
+        toggleBtn.textContent = "Pause";
+        labelEl.textContent = "Running in background";
+        if (hdrStatus) hdrStatus.textContent = `focus · ${formatted}`;
+      } else {
+        if (hdrStatus) hdrStatus.textContent = "fresh · local-first";
+        if (rem < state.timer.totalSeconds && rem > 0) {
+          toggleBtn.textContent = "Resume";
+          labelEl.textContent = "Paused";
+        } else {
+          toggleBtn.textContent = "Start";
+        }
+      }
+    }
+
+    function tickTimer() {
+      if (!state.timer.isRunning) {
+        drawTimer();
+        return;
+      }
+      const rem = getRemainingSeconds();
+      drawTimer();
+      if (rem <= 0) {
+        const finishedMin = state.timer.chosenMinutes;
+        state.timer.isRunning = false;
+        state.timer.endTime = null;
+        state.timer.remainingWhenPaused = state.timer.totalSeconds;
+        stopTimerLoop();
+        logFocusSession(finishedMin, true);
+        drawTimer();
+        document.getElementById("timerLabel").textContent = "Session complete · take a break";
+      }
+    }
+
+    function ensureTimerLoop() {
+      if (!timerInterval) {
+        timerInterval = setInterval(tickTimer, 500);
+      }
+    }
+
+    function stopTimerLoop() {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+    }
+
+    function toggleTimer() {
+      if (state.timer.isRunning) {
+        state.timer.remainingWhenPaused = getRemainingSeconds();
+        state.timer.isRunning = false;
+        state.timer.endTime = null;
+        stopTimerLoop();
+        save();
+        return;
+      }
+      const startSec = state.timer.remainingWhenPaused > 0
+        ? state.timer.remainingWhenPaused
+        : state.timer.totalSeconds;
+      state.timer.isRunning = true;
+      state.timer.endTime = Date.now() + startSec * 1000;
+      ensureTimerLoop();
+      save();
+    }
+
+    function applyCustomMinutes(mins) {
+      const clamped = Math.max(1, Math.min(300, Math.round(Number(mins) || 25)));
+      stopTimerLoop();
+      state.timer = {
+        chosenMinutes: clamped,
+        totalSeconds: clamped * 60,
+        remainingWhenPaused: clamped * 60,
+        isRunning: false,
+        endTime: null
+      };
+      save();
+      syncTimerControls();
+      document.getElementById("timerLabel").textContent = `Set to ${clamped} min · ready`;
+    }
+
+    function resetTimer() {
+      applyCustomMinutes(state.timer.chosenMinutes);
+      document.getElementById("timerLabel").textContent = "Ready to focus";
+    }
+
+    function logFocusSession(minutes, ringBell = false) {
+      const d = todayStr();
+      if (!state.focus[d]) state.focus[d] = [];
+      state.focus[d].push({
+        minutes,
+        at: new Date().toLocaleTimeString()
+      });
+      save();
+      if (ringBell) playChime();
+      document.getElementById("timerLabel").textContent = "Logged. Take a mindful break.";
+    }
+
+    document.getElementById("timerToggle").addEventListener("click", toggleTimer);
+    document.getElementById("timerReset").addEventListener("click", resetTimer);
+    document.getElementById("timerSkip").addEventListener("click", () => {
+      const elapsedSec = state.timer.totalSeconds - getRemainingSeconds();
+      const mins = elapsedSec >= 60 ? Math.max(1, Math.round(elapsedSec / 60)) : state.timer.chosenMinutes;
+      logFocusSession(mins, false);
+      resetTimer();
+      document.getElementById("timerLabel").textContent = "Session logged";
+    });
+
+    document.querySelectorAll(".preset").forEach((btn) => {
+      btn.addEventListener("click", () => applyCustomMinutes(Number(btn.dataset.min)));
+    });
+
+    document.getElementById("setCustomTimerBtn").addEventListener("click", () => {
+      applyCustomMinutes(document.getElementById("customMinutes").value);
+    });
+
+    document.getElementById("customMinutes").addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        applyCustomMinutes(document.getElementById("customMinutes").value);
+      }
+    });
+
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) tickTimer();
+    });
+    window.addEventListener("focus", tickTimer);
+
+    function focusStreak() {
+      let streak = 0;
+      const cursor = dateObj(todayStr());
+      while (true) {
+        const key = cursor.toLocaleDateString("en-CA");
+        if (!(state.focus[key] || []).length) break;
+        streak++;
+        cursor.setDate(cursor.getDate() - 1);
+      }
+      return streak;
+    }
+
+    function renderTimer() {
+      const todayFocus = state.focus[todayStr()] || [];
+      const totalMin = todayFocus.reduce((sum, item) => sum + (item.minutes || 0), 0);
+      document.getElementById("sessionCount").textContent = todayFocus.length;
+      document.getElementById("timerHours").textContent = (totalMin / 60).toFixed(1);
+      document.getElementById("timerStreak").textContent = focusStreak();
+      document.getElementById("focusLog").innerHTML = todayFocus
+        .map((item) => `
+          <div class="historyrow">
+            <b>${escapeHtml(item.minutes)} min focus</b>
+            <div class="muted">${escapeHtml(item.at)}</div>
+          </div>
+        `).join("") || '<div class="muted">No sessions logged today. Start the timer when ready.</div>';
+      syncTimerControls();
+      drawTimer();
+    }
+
+    function countdown(elId, targetDate, label) {
+      const el = document.getElementById(elId);
+      if (!el) return;
+      if (!targetDate) {
+        el.textContent = `${label} · date not set`;
+        return;
+      }
+      const diff = daysBetween(todayStr(), targetDate);
+      el.textContent = diff > 0
+        ? `${label} · ${diff} days left`
+        : diff === 0
+          ? `${label} · today`
+          : `${label} · passed`;
+    }
+
+    function renderHeader() {
+      const now = new Date();
+      document.getElementById("dateDisplay").textContent = now.toLocaleDateString(undefined, {
+        month: "short",
+        day: "numeric"
+      });
+      document.getElementById("weekdayDisplay").textContent = now.toLocaleDateString(undefined, {
+        weekday: "long"
+      });
+      countdown("jeeCount", state.jeeDate, "JEE");
+      countdown("boardCount", state.boardDate, "Boards");
+      countdown("cuetCount", state.cuetDate, "CUET");
+      countdown("seasonCount", state.endDate, "End of study season");
+      document.getElementById("heroTitle").textContent = now.getHours() < 12
+        ? "Good morning."
+        : now.getHours() < 17
+          ? "Keep your momentum."
+          : "A little progress still counts.";
+    }
+
+    function saveExamDates() {
+      state.jeeDate = document.getElementById("jeeDate").value;
+      state.boardDate = document.getElementById("boardDate").value;
+      state.cuetDate = document.getElementById("cuetDate").value;
+      save();
+      showNotice("examSavedNote", "Exam countdown dates updated.");
+    }
+
+    function saveSeason() {
+      const st = document.getElementById("startDate").value;
+      const en = document.getElementById("endDate").value;
+      const ph = document.getElementById("phase2Date").value;
+      if (!st || !en || st > en) {
+        showNotice("seasonSavedNote", "Choose a valid start and end date range.", true);
+        return;
+      }
+      state.startDate = st;
+      state.endDate = en;
+      state.phase2Date = ph || "2027-03-01";
+      state.plan = makePlan(st, en);
+      state.selectedDate = todayStr();
+      save();
+      showNotice("seasonSavedNote", "Season dates saved and daily plan regenerated.");
+    }
+
+    function exportBackup() {
+      try {
+        const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `study-command-fresh-${todayStr()}.json`;
+        link.click();
+        URL.revokeObjectURL(url);
+        showNotice("backupNotice", "Backup JSON downloaded.");
+      } catch (err) {
+        showNotice("backupNotice", "Could not export backup file in this browser.", true);
+      }
+    }
+
+    function importBackup(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const parsed = JSON.parse(reader.result);
+          const start = parsed.startDate || todayStr();
+          const end = parsed.endDate || "2027-05-31";
+          state = {
+            ...baseState(),
+            ...parsed,
+            startDate: start,
+            endDate: end,
+            chapters: defaultChapters,
+            plan: parsed.plan || makePlan(start, end),
+            timer: { ...defaultTimer(), ...(parsed.timer || {}) }
+          };
+          save();
+          showNotice("backupNotice", "Backup restored into fresh workspace.");
+        } catch (err) {
+          showNotice("backupNotice", "Invalid JSON backup file.", true);
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = "";
+    }
+
+    function toggleResetConfirm(show) {
+      const box = document.getElementById("resetConfirmBox");
+      if (box) box.classList.toggle("hidden", !show);
+    }
+
+    function resetAll() {
+      stopTimerLoop();
+      try {
+        localStorage.removeItem(STORE);
+        LEGACY_KEYS.forEach((k) => localStorage.removeItem(k));
+      } catch (err) {}
+      state = baseState();
+      toggleResetConfirm(false);
+      save();
+      showNotice("backupNotice", "Fresh workspace reset complete.");
+    }
+
+    function renderAll() {
+      renderHeader();
+      renderDashboard();
+      renderPlanner();
+      renderSyllabus();
+      renderTests();
+      renderDoubts();
+      renderMistakes();
+      renderCheckins();
+      renderTimer();
+    }
+
+    function getFilteredFlashcards() {
+      const sub = document.getElementById("deckSubjectFilter")?.value || "All";
+      if (sub === "All") return selfStudyCards;
+      const matches = selfStudyCards.filter((c) => c.subject === sub);
+      return matches.length ? matches : selfStudyCards;
+    }
+
+    function resetFlashcardDeck() {
+      flashcardIndex = 0;
+      flashcardRevealed = false;
+      renderSelfStudy();
+    }
+
+    function nextFlashcard() {
+      const deck = getFilteredFlashcards();
+      flashcardIndex = (flashcardIndex + 1) % deck.length;
+      flashcardRevealed = false;
+      renderSelfStudy();
+    }
+
+    function toggleFlashcardAnswer() {
+      flashcardRevealed = !flashcardRevealed;
+      renderSelfStudy();
+    }
+
+    function logSelfStudySession() {
+      const subject = document.getElementById("selfStudySubject").value;
+      const minutes = Math.max(5, Math.min(480, Number(document.getElementById("selfStudyMinutes").value || 0)));
+      const questions = Math.max(0, Math.min(500, Number(document.getElementById("selfStudyQuestions").value || 0)));
+      const topic = document.getElementById("selfStudyTopic").value.trim() || `${subject} self-study block`;
+      const stepsDone = [
+        document.getElementById("ssStep1").checked ? "NCERT" : "",
+        document.getElementById("ssStep2").checked ? "Timed MCQs" : "",
+        document.getElementById("ssStep3").checked ? "Notes" : ""
+      ].filter(Boolean);
+
+      const d = todayStr();
+      if (!state.focus[d]) state.focus[d] = [];
+      state.focus[d].push({
+        minutes,
+        at: `${new Date().toLocaleTimeString()} · ${subject}`
+      });
+
+      const latestCheck = state.checkins.find((c) => c.date === d);
+      if (latestCheck) {
+        latestCheck.questions = Number(latestCheck.questions || 0) + questions;
+        latestCheck.hours = Number((Number(latestCheck.hours || 0) + minutes / 60).toFixed(2));
+      } else if (questions > 0) {
+        state.checkins.unshift({
+          date: d,
+          day: roadmapDay(d),
+          hours: Number((minutes / 60).toFixed(2)),
+          questions,
+          score: "",
+          math: subject === "Maths" ? topic : "",
+          physics: subject === "Physics" ? topic : "",
+          chem: subject === "Chemistry" ? topic : "",
+          other: ["English", "GAT"].includes(subject) ? `${subject}: ${topic}` : "",
+          struggle: "",
+          priority: ""
+        });
+      }
+
+      state.selfStudyLogs.unshift({
+        id: makeId(),
+        date: d,
+        subject,
+        topic,
+        minutes,
+        questions,
+        steps: stepsDone.join(" · ") || "Self-study"
+      });
+
+      document.getElementById("selfStudyTopic").value = "";
+      ["ssStep1", "ssStep2", "ssStep3"].forEach((id) => {
+        document.getElementById(id).checked = false;
+      });
+
+      save();
+      showNotice("selfStudyNotice", `Logged ${minutes} min and ${questions} question(s) for ${subject}.`);
+    }
+
+    function sendSelfStudyDoubt() {
+      const subject = document.getElementById("selfStudySubject").value;
+      const topic = document.getElementById("selfStudyTopic").value.trim();
+      const card = getFilteredFlashcards()[flashcardIndex];
+      screen("doubts");
+      document.getElementById("doubtSubject").value = subject;
+      document.getElementById("doubtChapter").value = topic || (card ? card.topic : "");
+      if (topic) {
+        document.getElementById("doubtInput").value = `Explain key concepts and CUET traps for: ${topic}`;
+      }
+    }
+
+    function renderSelfStudy() {
+      const box = document.getElementById("flashcardBox");
+      const hist = document.getElementById("selfStudyHistory");
+      if (!box || !hist) return;
+
+      const deck = getFilteredFlashcards();
+      const card = deck[flashcardIndex % deck.length];
+      box.innerHTML = `
+        <div class="flex" style="flex-wrap: wrap;">
+          <span class="tag ${taskTagClass(card.subject)}" style="margin-left: 0;">${escapeHtml(card.subject)}</span>
+          <span class="muted">${escapeHtml(card.topic)} · Card ${(flashcardIndex % deck.length) + 1}/${deck.length}</span>
+        </div>
+        <div class="smalltext" style="font-weight: 600; color: var(--ink); margin: 10px 0;">${escapeHtml(card.prompt)}</div>
+        ${flashcardRevealed
+          ? `<div class="doubt-answer">${escapeHtml(card.answer)}</div>`
+          : `<div class="muted" style="margin: 8px 0;">Answer hidden — recall first, then reveal.</div>`
+        }
+        <button class="btn light" style="margin-top: 10px;" onclick="toggleFlashcardAnswer()">
+          ${flashcardRevealed ? "Hide answer" : "Reveal answer"}
+        </button>
+      `;
+
+      if (!state.selfStudyLogs.length) {
+        hist.innerHTML = '<div class="muted">No self-study blocks logged yet. Record a session above to track independent study.</div>';
+        return;
+      }
+
+      hist.innerHTML = state.selfStudyLogs.slice(0, 12).map((item) => `
+        <div class="historyrow">
+          <div class="flex" style="flex-wrap: wrap;">
+            <b>${escapeHtml(item.subject)} · ${escapeHtml(item.topic)}</b>
+            <span class="muted">${escapeHtml(item.minutes)} min · ${escapeHtml(item.questions)} Qs</span>
+          </div>
+          <div class="muted">${escapeHtml(fmt(item.date))} · ${escapeHtml(item.steps)}</div>
+        </div>
+      `).join("");
+    }
+
+    function renderAll() {
+      renderHeader();
+      renderDashboard();
+      renderPlanner();
+      renderSyllabus();
+      renderSelfStudy();
+      renderTests();
+      renderDoubts();
+      renderMistakes();
+      renderCheckins();
+      renderTimer();
+
+      const setIfIdle = (id, val) => {
+        const el = document.getElementById(id);
+        if (el && document.activeElement !== el) el.value = val || "";
+      };
+      setIfIdle("jeeDate", state.jeeDate);
+      setIfIdle("boardDate", state.boardDate);
+      setIfIdle("cuetDate", state.cuetDate);
+      setIfIdle("startDate", state.startDate);
+      setIfIdle("endDate", state.endDate);
+      setIfIdle("phase2Date", state.phase2Date);
+    }
+
+    if (state.timer.isRunning) {
+      ensureTimerLoop();
+      tickTimer();
+    }
+    renderAll();
+  </script>
+</body>
+</html>
